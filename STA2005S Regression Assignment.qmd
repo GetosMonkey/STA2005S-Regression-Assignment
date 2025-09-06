@@ -65,6 +65,7 @@ col_palette = c (
 )
 
 ```
+
 ## Part One: Analysis
 
 ### Section 1: Introduction
@@ -117,6 +118,7 @@ curve(dnorm(x, mean = mean_kwh, sd = sd_kwh),
       )
 
 ```
+
 ```{r}
 # Plot the density of consumption_kwh, stratified by solar_installed, with overlaid normal densities. Comment on the shape, and consider why the densities changes from the unstratified case.
 
@@ -155,7 +157,39 @@ ggplot(data, aes(x = consumption_kwh, fill = solar_installed)) +
 ##### Pairwise Plots:
 
 ```{r}
+#| fig-width: 20
+#| fig-height: 16
+#| out-width: "100%"
+#| layout-ncol: 1
+#| dpi: 150
 
+# Create pairwise scatterplots for all continuous variables, including consumption_kwh
+
+cts_variables <- data %>%
+  dplyr::select(consumption_kwh, outside_temperature, humidity, 
+                wind_speed, household_size, appliance_index)
+
+day_numeric <- as.numeric(factor(data$day_of_week, 
+levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")))
+
+efficiency_numeric <- as.numeric(factor(data$energy_efficiency, levels = c("Poor", "Average", "Good", "Excellent")))
+
+#_________________________________________________________________
+
+par(mar = c(10, 10, 15, 6))
+
+# Graph
+
+pairs(x = cts_variables, pch = 19, 
+      col = col_palette[efficiency_numeric + 1], 
+      main = " Pairwise Scatterplot for Continous Variables", 
+      gap = 0.5,
+      las = 1, 
+      cex = 3, 
+      cex.labels = 3, 
+      cex.axis = 3,
+      cex.main = 3
+      )
 ```
 
 ##### Categorical Variable Plots:
@@ -239,4 +273,3 @@ ggplot(data, aes(x = consumption_kwh, fill = solar_installed)) +
 ```{r}
 
 ```
-

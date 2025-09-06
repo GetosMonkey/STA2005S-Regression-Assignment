@@ -14,4 +14,5 @@ In addition, there are 10 marks for presentation across both parts, focusing on 
 ## Resources Used: 
 1) https://www.youtube.com/watch?v=jX4_Dnzhl0M
 2) https://www.sthda.com/english/wiki/ggplot2-density-plot-quick-start-guide-r-software-and-data-visualization
-3)
+3) https://www.sthda.com/english/wiki/scatter-plot-matrices-r-base-graphs
+4) 
