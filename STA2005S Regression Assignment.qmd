@@ -41,9 +41,14 @@ humidity <- data$humidity
 wind_speed <- data$wind_speed
 household_size <- data$household_size
 appliance_index <- data$appliance_index
-energy_efficiency <- data$energy_efficiency
-solar_installed <- data$solar_installed
-day_of_week <- data$day_of_week
+
+energy_efficiency <- factor(data$energy_efficiency, levels = c("Poor", "Average", "Good", "Excellent"), ordered = TRUE)
+
+solar_installed <- factor(data$solar_installed, levels = c("Yes", "No"), ordered = TRUE)
+
+day_of_week <- factor(data$day_of_week, 
+levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"), ordered = TRUE)
+
 holiday <- data$holiday
 
 # Making a color Palette for my document: 
@@ -59,8 +64,10 @@ col_palette = c (
   "#4d908e",
   "#277da1",
   "#3a86ff",
-  "#9d4edd", 
-  "#6a4c93"
+  "#7766EB",
+  "#9d4edd",
+  "#991090", 
+  "#c93399"
   
 )
 
@@ -145,7 +152,7 @@ ggplot(data, aes(x = consumption_kwh, fill = solar_installed)) +
   scale_fill_manual(values= c("Yes"=col_palette[1], "No"=col_palette[11])) +
   scale_linetype_manual(values = c(2, 2), name = "Normal Distribution") +
   
-  labs(title = "Electricity Consumption Density by Solar Installation", 
+  labs(title = "Density Plot of Electricity Consumption Density by Solar Installation", 
        x = "Consumption (kWh)", 
        y = "Density",
        fill = "Solar Installed"
@@ -157,8 +164,8 @@ ggplot(data, aes(x = consumption_kwh, fill = solar_installed)) +
 ##### Pairwise Plots:
 
 ```{r}
-#| fig-width: 20
-#| fig-height: 16
+#| fig-width: 22
+#| fig-height: 18
 #| out-width: "100%"
 #| layout-ncol: 1
 #| dpi: 150
@@ -170,16 +177,14 @@ cts_variables <- data %>%
                 wind_speed, household_size, appliance_index)
 
 day_numeric <- as.numeric(factor(data$day_of_week, 
-levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")))
+levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"), ordered = TRUE))
 
-efficiency_numeric <- as.numeric(factor(data$energy_efficiency, levels = c("Poor", "Average", "Good", "Excellent")))
+efficiency_numeric <- as.numeric(factor(data$energy_efficiency, levels = c("Poor", "Average", "Good", "Excellent"), ordered = TRUE))
 
+solar_numeric <- as.numeric(factor(data$solar_installed, levels = c("Yes", "No"), ordered = TRUE))
 #_________________________________________________________________
 
-par(mar = c(10, 10, 15, 6))
-
 # Graph
-
 pairs(x = cts_variables, pch = 19, 
       col = col_palette[efficiency_numeric + 1], 
       main = " Pairwise Scatterplot for Continous Variables", 
@@ -195,6 +200,50 @@ pairs(x = cts_variables, pch = 19,
 ##### Categorical Variable Plots:
 
 ```{r}
+
+# Plot consumption_kwh against each categorical variable. Namely: Solar_installed, Energy_efficient, days_of_the_week, and holiday
+
+par(mar = c(4, 10, 3, 2))
+boxplot(consumption_kwh ~ efficiency_numeric, data = data,
+        horizontal = TRUE, 
+        names = levels(energy_efficiency),
+        xlab = "Energy Consumption (kWh)", ylab = "", 
+        main = "Boxplot of Energy Consumption \nby Efficiency",
+        col = col_palette[1:4], 
+        las = 1
+        )
+mtext("Efficiency", side = 2, line = 6, cex = 1, font = 1)
+
+par(mar = c(4, 10, 3, 2))
+boxplot(consumption_kwh ~ solar_numeric, data = data, 
+        horizontal = TRUE,
+        names = levels(solar_installed),
+        xlab = "Energy Consumption (kWh)", ylab = "Solar Installed", 
+        main = "Boxplot of Energy Consumption \nby Solar Use",
+        col = col_palette[5:6], 
+        las = 1
+        )
+
+par(mar = c(4, 10, 3, 2))
+boxplot(consumption_kwh ~ day_numeric, data = data, 
+        horizontal = TRUE,
+        names = levels(day_of_week),
+        xlab = "Energy Consumption (kWh)", ylab = "", 
+        main = "Boxplot of Energy Consumption \nby Weekday",
+        col = col_palette[7:13], 
+        las = 1
+        )
+mtext("Weekday", side = 2, line = 6, cex = 1, font = 1)
+
+par(mar = c(4, 10, 3, 2))
+boxplot(consumption_kwh ~ holiday, data = data, 
+        horizontal = TRUE,
+        names = c("No", "Yes"),
+        xlab = "Energy Consumption (kWh)", ylab = "Holiday", 
+        main = "Boxplot of Energy Consumption \nby Holiday Status",
+        col = col_palette[14:15], 
+        las = 1
+        )
 
 ```
 
