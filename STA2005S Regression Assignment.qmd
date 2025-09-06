@@ -1,0 +1,248 @@
+---
+title: "Stats Assignment 1"
+author: "Group 48 - ABRMAR043"
+format: html
+editor: visual
+---
+
+# STA2005S Regression Assignment
+
+Setup, Data loading and Objective:
+
+```{r}
+# We want to analyse the relationships between the variables: (outside_temperature, humidity, wind_speed, household_size, appliance_index, energy_efficiency, solar_installed, day_of_week, and holiday) against comsumption_kwh to inform demand-side management and efficiency policy
+
+#| results: hide
+#| warning: false
+#| message: false
+#| error: false
+if (!requireNamespace("remotes", quietly = TRUE)) {
+install.packages("remotes")
+}
+remotes::install_github("MiguelRodo/DataTidyRodoSTA2005S")
+data("data_tidy_energy_use", package = "DataTidyRodoSTA2005S")
+
+```
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(car)
+library(MASS)
+library(reshape2)
+
+data <- data_tidy_energy_use
+str(data)
+
+consumption_kwh <- data$consumption_kwh
+outside_temperature <- data$outside_temperature
+humidity <- data$humidity
+wind_speed <- data$wind_speed
+household_size <- data$household_size
+appliance_index <- data$appliance_index
+energy_efficiency <- data$energy_efficiency
+solar_installed <- data$solar_installed
+day_of_week <- data$day_of_week
+holiday <- data$holiday
+
+# Making a color Palette for my document: 
+col_palette = c (
+  "#ff6fae",
+  "#d81159",
+  "#f94144", 
+  "#f3722c", 
+  "#f8961e", 
+  "#f9c74f",
+  "#90be6d", 
+  "#43aa8b",
+  "#4d908e",
+  "#277da1",
+  "#3a86ff",
+  "#9d4edd", 
+  "#6a4c93"
+  
+)
+
+```
+## Part One: Analysis
+
+### Section 1: Introduction
+
+```{r}
+
+```
+
+##### Problem & Unknown:
+
+```{r}
+
+```
+
+##### Analysis Summary:
+
+```{r}
+
+```
+
+##### Nature of analysis:
+
+```{r}
+
+```
+
+### Section 2: Data Exploration
+
+##### Density Plots:
+
+```{r}
+# Plot a histogram of consumption_kwh (freq = FALSE, if using base R) with an overlaid normal density 
+
+mean_kwh <- mean(consumption_kwh, na.rm = TRUE)
+sd_kwh <- sd(consumption_kwh, na.rm = TRUE)
+
+hist(consumption_kwh, 
+     freq = FALSE, 
+     main = "Histogram of Electricity Consumption", 
+     xlab = "Consumption (kwh)",
+     ylab = "Density",
+     col = col_palette[7], 
+     border = "white"
+     )
+
+curve(dnorm(x, mean = mean_kwh, sd = sd_kwh), 
+      col = col_palette[11], 
+      lwd = 2.5, 
+      add = TRUE
+      )
+
+```
+```{r}
+# Plot the density of consumption_kwh, stratified by solar_installed, with overlaid normal densities. Comment on the shape, and consider why the densities changes from the unstratified case.
+
+solar_yes <- data %>% filter(solar_installed == "Yes")
+solar_no <- data %>% filter(solar_installed == "No")
+
+mean_solar <- mean(solar_yes$consumption_kwh, na.rm = TRUE)
+mean_no_solar <- mean(solar_no$consumption_kwh, na.rm = TRUE)
+sd_solar <- sd(solar_yes$consumption_kwh, na.rm = TRUE)
+sd_no_solar <- sd(solar_no$consumption_kwh, na.rm = TRUE)
+
+ggplot(data, aes(x = consumption_kwh, fill = solar_installed)) +
+  geom_density(color = "white", linewidth = 0, alpha = 0.4) +
+
+  stat_function(fun = dnorm, 
+                args = list(mean = mean_solar, sd = sd_solar),
+                aes(linetype = "Normal (Solar)"),
+                color = col_palette[4], linewidth = 1.15) +
+  stat_function(fun = dnorm, 
+                args = list(mean = mean_no_solar, sd = sd_no_solar),
+                aes(linetype = "Normal (No solar)"),
+                color = col_palette[12], linewidth = 1.15) +
+  
+  scale_fill_manual(values= c("Yes"=col_palette[1], "No"=col_palette[11])) +
+  scale_linetype_manual(values = c(2, 2), name = "Normal Distribution") +
+  
+  labs(title = "Electricity Consumption Density by Solar Installation", 
+       x = "Consumption (kWh)", 
+       y = "Density",
+       fill = "Solar Installed"
+       ) +
+  theme_minimal()
+  
+```
+
+##### Pairwise Plots:
+
+```{r}
+
+```
+
+##### Categorical Variable Plots:
+
+```{r}
+
+```
+
+##### Categorical Relationships:
+
+```{r}
+
+```
+
+##### Comments:
+
+### Section 3: Simple Linear Regression
+
+##### Model Fitting:
+
+```{r}
+
+```
+
+##### Simultaneous Hypothesis Test:
+
+```{r}
+
+```
+
+### Section 4: Multiple Linear Regression
+
+##### Fit Model:
+
+```{r}
+
+```
+
+##### Hypothesis Testing:
+
+```{r}
+
+```
+
+##### Interpretation:
+
+```{r}
+
+```
+
+### Section 5: Conclusion
+
+##### Summary:
+
+```{r}
+
+```
+
+##### Recomendations:
+
+```{r}
+
+```
+
+##### Future Research:
+
+```{r}
+
+```
+
+## Part Two: Simulation of Power
+
+### Scenario A: Baseline Normal Errors
+
+```{r}
+
+```
+
+### Scenario B: Non-linear Truth/Exponential Relationship
+
+```{r}
+
+```
+
+## Resources Used: 
+1) https://www.youtube.com/watch?v=jX4_Dnzhl0M
+2) https://www.sthda.com/english/wiki/ggplot2-density-plot-quick-start-guide-r-software-and-data-visualization
+3) 
+
+
