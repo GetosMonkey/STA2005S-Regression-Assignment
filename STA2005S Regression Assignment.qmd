@@ -9,8 +9,8 @@ editor: visual
 
 Setup, Data loading and Objective:
 
-```{r}
-# We want to analyse the relationships between the variables: (outside_temperature, humidity, wind_speed, household_size, appliance_index, energy_efficiency, solar_installed, day_of_week, and holiday) against comsumption_kwh to inform demand-side management and efficiency policy
+```{r, echo=TRUE, eval=TRUE, include=FALSE}
+# We want to analyse the relationships between the variables: (outside_temperature, humidity, wind_speed, household_size, appliance_index, energy_efficiency, solar_installed, day_of_week, and holiday) against consumption_kwh to inform demand-side management and efficiency policy
 
 #| results: hide
 #| warning: false
@@ -25,15 +25,20 @@ data("data_tidy_energy_use", package = "DataTidyRodoSTA2005S")
 ```
 
 ```{r}
+#| results: hide
+#| warning: false
+#| echo: false
+
 library(ggplot2)
 library(dplyr)
 library(tidyr)
 library(car)
 library(MASS)
 library(reshape2)
+library(reactable)
+library(shiny)
 
 data <- data_tidy_energy_use
-str(data)
 
 consumption_kwh <- data$consumption_kwh
 outside_temperature <- data$outside_temperature
@@ -72,28 +77,25 @@ col_palette = c (
 )
 
 ```
+---
 
 ## Part One: Analysis
 
 ### Section 1: Introduction
 
-```{r}
-
-```
-
-##### Problem & Unknown:
+#### Problem & Unknown:
 
 ```{r}
 
 ```
 
-##### Analysis Summary:
+#### Analysis Summary:
 
 ```{r}
 
 ```
 
-##### Nature of analysis:
+#### Nature of analysis:
 
 ```{r}
 
@@ -101,7 +103,7 @@ col_palette = c (
 
 ### Section 2: Data Exploration
 
-##### Density Plots:
+#### Density Plots:
 
 ```{r}
 # Plot a histogram of consumption_kwh (freq = FALSE, if using base R) with an overlaid normal density 
@@ -127,6 +129,7 @@ curve(dnorm(x, mean = mean_kwh, sd = sd_kwh),
 ```
 
 ```{r}
+#| warning: false
 # Plot the density of consumption_kwh, stratified by solar_installed, with overlaid normal densities. Comment on the shape, and consider why the densities changes from the unstratified case.
 
 solar_yes <- data %>% filter(solar_installed == "Yes")
@@ -161,7 +164,7 @@ ggplot(data, aes(x = consumption_kwh, fill = solar_installed)) +
   
 ```
 
-##### Pairwise Plots:
+#### Pairwise Plots:
 
 ```{r}
 #| fig-width: 22
@@ -197,9 +200,10 @@ pairs(x = cts_variables, pch = 19,
       )
 ```
 
-##### Categorical Variable Plots:
+#### Categorical Variable Plots:
 
 ```{r}
+#| fig-align: "center"
 
 # Plot consumption_kwh against each categorical variable. Namely: Solar_installed, Energy_efficient, days_of_the_week, and holiday
 
@@ -247,23 +251,122 @@ boxplot(consumption_kwh ~ holiday, data = data,
 
 ```
 
-##### Categorical Relationships:
+#### Categorical Relationships:
 
+###### Energy Efficiency vs Solar Usage Table:
 ```{r}
+#| echo: false
+
+my_theme <- reactableTheme(
+            highlightColor = col_palette[1],
+            headerStyle = list(
+              background = col_palette[11],
+              color = "white",
+              fontSize = "14px",
+              fontWeight = "bold",
+              borderBottom = paste0("2px solid ",col_palette[4])
+            )
+            )
+  
+# Efficiency vs Solar Usage
+
+efficiency_solar <- as.data.frame.matrix(table(energy_efficiency, solar_installed))
+
+reactable(efficiency_solar, 
+          columns = list( .rownames = colDef(name = "Energy Efficiency"), No = colDef(name = "No Solar"), Yes = colDef(name = "Solar use")),
+          sortable = FALSE,
+          highlight = TRUE, 
+          borderless = TRUE, 
+          bordered = TRUE,
+          theme = my_theme
+          )
+
+```
+<br>
+
+###### Weekdays vs Holidays Table:
+```{r}
+#| echo: false
+  
+# Weekdays vs Holidays
+
+days_holidays <- as.data.frame.matrix(table(day_of_week, holiday))
+
+reactable(days_holidays, 
+          columns = list( 
+            .rownames = colDef(name = "Day of the Week"), 
+            "0" = colDef(name = "No Holiday"), 
+            "1" = colDef(name = "Holiday")),
+          sortable = FALSE,
+          highlight = TRUE, 
+          borderless = TRUE, 
+          bordered = TRUE,
+          theme = my_theme
+          )
 
 ```
 
-##### Comments:
+#### Comments:
 
 ### Section 3: Simple Linear Regression
 
-##### Model Fitting:
+#### Model Fitting:
 
 ```{r}
+# From first principles (manual calculation), fit a simple linear regression of consumption_kwh on outside_temperature
 
+#1) design matrix
+
+X <- cbind(1, outside_temperature)
+Y <- consumption_kwh
+k <- ncol(X)
+n <- nrow(X)
+p <- k-1
+
+#2) finding regression coefficients
+
+B_hat <- solve(t(X)%*%X)%*%t(X)%*%Y
+B0_hat <- B_hat[1]
+B1_hat <- B_hat[2]
+
+
+#3) calculating residuals and variance
+
+Y_hat <- X %*% B_hat
+e <- Y - Y_hat
+SSE <- t(e) %*% e
+SST <- sum((Y-mean(Y))^2)
+s_squared <- as.numeric(SSE/(n-k))
+
+#4) Calculating Standard Errors
+cov_mat_B <- s_squared * solve(t(X)%*%X)
+se_B <- sqrt(diag(cov_mat_B))
+se_B0 <- se_B[1]
+se_B1 <- se_B[2]
+
+#5) t,f & p - values
+
+t_B0 <- B0_hat/se_B0
+t_B1 <- B1_hat/se_B1
+p_B0 <- 2 * pt(abs(t_B0), df = n - k, lower.tail = FALSE)
+p_B1 <- 2 * pt(abs(t_B1), df = n - k, lower.tail = FALSE)
+F_stat <- ((SST-RSS)/(k-1)) / s_squared
+p_F <- pf(F_stat, df = k - 1, lower.tail = FALSE)
+
+#5) Multiple R squared and R-adjusted
+R_squared <- 1 - (SSE/SST)
+R_adj <- 1-(1-R_sqaured)*((n-1)/(n-k))
+
+
+# Reproduce the summary() output, working from the coefficients table down
+
+cat("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
+cat("Residual standard error: ", round(s_squared, 2), " on ", n-p, " degrees of freedom")
+cat("Multiple R-squared: ",R_squared, "\t Adjusted R-squared: ",R_adj )
+cat("F-statistic: ")
 ```
 
-##### Simultaneous Hypothesis Test:
+#### Simultaneous Hypothesis Test:
 
 ```{r}
 
@@ -271,19 +374,19 @@ boxplot(consumption_kwh ~ holiday, data = data,
 
 ### Section 4: Multiple Linear Regression
 
-##### Fit Model:
+#### Fit Model:
 
 ```{r}
 
 ```
 
-##### Hypothesis Testing:
+#### Hypothesis Testing:
 
 ```{r}
 
 ```
 
-##### Interpretation:
+#### Interpretation:
 
 ```{r}
 
@@ -291,25 +394,30 @@ boxplot(consumption_kwh ~ holiday, data = data,
 
 ### Section 5: Conclusion
 
-##### Summary:
+#### Summary:
 
 ```{r}
 
 ```
 
-##### Recomendations:
+#### Recomendations:
 
 ```{r}
 
 ```
 
-##### Future Research:
+#### Future Research:
 
 ```{r}
 
 ```
+
+
+---
 
 ## Part Two: Simulation of Power
+
+
 
 ### Scenario A: Baseline Normal Errors
 
