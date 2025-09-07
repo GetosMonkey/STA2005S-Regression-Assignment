@@ -85,6 +85,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="STA2005S Regression Assignment_files/libs/reactable-binding-0.4.4/reactable.js"></script>
 
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -248,18 +277,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="categorical-variable-plots" class="level4">
 <h4 class="anchored" data-anchor-id="categorical-variable-plots">Categorical Variable Plots:</h4>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot consumption_kwh against each categorical variable. Namely: Solar_installed, Energy_efficient, days_of_the_week, and holiday</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(consumption_kwh <span class="sc">~</span> efficiency_numeric, <span class="at">data =</span> data,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">horizontal =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">levels</span>(energy_efficiency),</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Energy Consumption (kWh)"</span>, <span class="at">ylab =</span> <span class="st">""</span>, </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Boxplot of Energy Consumption </span><span class="sc">\n</span><span class="st">by Efficiency"</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> col_palette[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">las =</span> <span class="dv">1</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"Efficiency"</span>, <span class="at">side =</span> <span class="dv">2</span>, <span class="at">line =</span> <span class="dv">6</span>, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">font =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -267,15 +284,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(consumption_kwh <span class="sc">~</span> solar_numeric, <span class="at">data =</span> data, </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">horizontal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">levels</span>(solar_installed),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Energy Consumption (kWh)"</span>, <span class="at">ylab =</span> <span class="st">"Solar Installed"</span>, </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Boxplot of Energy Consumption </span><span class="sc">\n</span><span class="st">by Solar Use"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> col_palette[<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>], </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">las =</span> <span class="dv">1</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -283,16 +291,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(consumption_kwh <span class="sc">~</span> day_numeric, <span class="at">data =</span> data, </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">horizontal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">levels</span>(day_of_week),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Energy Consumption (kWh)"</span>, <span class="at">ylab =</span> <span class="st">""</span>, </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Boxplot of Energy Consumption </span><span class="sc">\n</span><span class="st">by Weekday"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> col_palette[<span class="dv">7</span><span class="sc">:</span><span class="dv">13</span>], </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">las =</span> <span class="dv">1</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"Weekday"</span>, <span class="at">side =</span> <span class="dv">2</span>, <span class="at">line =</span> <span class="dv">6</span>, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">font =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -300,15 +298,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(consumption_kwh <span class="sc">~</span> holiday, <span class="at">data =</span> data, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">horizontal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Yes"</span>),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Energy Consumption (kWh)"</span>, <span class="at">ylab =</span> <span class="st">"Holiday"</span>, </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Boxplot of Energy Consumption </span><span class="sc">\n</span><span class="st">by Holiday Status"</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> col_palette[<span class="dv">14</span><span class="sc">:</span><span class="dv">15</span>], </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">las =</span> <span class="dv">1</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -324,8 +313,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h6 class="anchored" data-anchor-id="energy-efficiency-vs-solar-usage-table">Energy Efficiency vs Solar Usage Table:</h6>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-6e9757bc7880824d38d6" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-6e9757bc7880824d38d6">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Poor","Average","Good","Excellent"],"Yes":[12,31,24,9],"No":[16,28,22,8]},"columns":[{"id":".rownames","name":"Energy Efficiency","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"Yes","name":"Solar use","type":"numeric"},{"id":"No","name":"No Solar","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"f62a3d31c1458f5e45b4eaed5cb757f9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-ae503d11058dc5c2f3bb" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ae503d11058dc5c2f3bb">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Poor","Average","Good","Excellent"],"Yes":[12,31,24,9],"No":[16,28,22,8]},"columns":[{"id":".rownames","name":"Energy Efficiency","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"Yes","name":"Solar use","type":"numeric"},{"id":"No","name":"No Solar","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"f62a3d31c1458f5e45b4eaed5cb757f9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -334,8 +323,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h6 class="anchored" data-anchor-id="weekdays-vs-holidays-table">Weekdays vs Holidays Table:</h6>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-add49e88e494748d76c9" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-add49e88e494748d76c9">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"0":[31,18,17,19,18,13,28],"1":[5,0,1,0,0,0,0]},"columns":[{"id":".rownames","name":"Day of the Week","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"0","name":"No Holiday","type":"numeric"},{"id":"1","name":"Holiday","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"af7f7cd3ef2fe65896f85c7b9701ba78"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-ec361c78f664a7e80a15" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ec361c78f664a7e80a15">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"0":[31,18,17,19,18,13,28],"1":[5,0,1,0,0,0,0]},"columns":[{"id":".rownames","name":"Day of the Week","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"0","name":"No Holiday","type":"numeric"},{"id":"1","name":"Holiday","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"af7f7cd3ef2fe65896f85c7b9701ba78"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -349,48 +338,132 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="model-fitting" class="level4">
 <h4 class="anchored" data-anchor-id="model-fitting">Model Fitting:</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From first principles (manual calculation), fit a simple linear regression of consumption_kwh on outside_temperature</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#1) design matrix</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>, outside_temperature)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> consumption_kwh</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">ncol</span>(X)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(X)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> k<span class="dv">-1</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#2) finding regression coefficients</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>B_hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X)<span class="sc">%*%</span>X)<span class="sc">%*%</span><span class="fu">t</span>(X)<span class="sc">%*%</span>Y</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>B0_hat <span class="ot">&lt;-</span> B_hat[<span class="dv">1</span>]</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>B1_hat <span class="ot">&lt;-</span> B_hat[<span class="dv">2</span>]</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#3) calculating residuals and variance</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>Y_hat <span class="ot">&lt;-</span> X <span class="sc">%*%</span> B_hat</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> Y <span class="sc">-</span> Y_hat</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>RSS <span class="ot">&lt;-</span> <span class="fu">t</span>(e) <span class="sc">%*%</span> e</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>s_squared <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(RSS<span class="sc">/</span>(n<span class="sc">-</span>k))</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">#4) Calculating Standard Errors</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>cov_mat_B <span class="ot">&lt;-</span> s_squared <span class="sc">*</span> <span class="fu">solve</span>(<span class="fu">t</span>(X)<span class="sc">%*%</span>X)</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>se_B <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(cov_mat_B))</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>se_B0 <span class="ot">&lt;-</span> se_B[<span class="dv">1</span>]</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>se_B1 <span class="ot">&lt;-</span> se_B[<span class="dv">2</span>]</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co">#5) t &amp; p - values</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>t_B0 <span class="ot">&lt;-</span> B0_hat<span class="sc">/</span>se_B0</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>t_B1 <span class="ot">&lt;-</span> B1_hat<span class="sc">/</span>se_B1</span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>p_B0 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="fu">abs</span>(t_B0), <span class="at">df =</span> n <span class="sc">-</span> k, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>p_B1 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="fu">abs</span>(t_B1), <span class="at">df =</span> n <span class="sc">-</span> k, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproduce the summary() output, working from the coefficients table down</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From first principles (manual calculation), fit a simple linear regression of consumption_kwh on outside_temperature</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#1) design matrix</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>, outside_temperature)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> consumption_kwh</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">ncol</span>(X)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(X)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> k<span class="dv">-1</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#2) finding regression coefficients</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>B_hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X)<span class="sc">%*%</span>X)<span class="sc">%*%</span><span class="fu">t</span>(X)<span class="sc">%*%</span>Y</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>B0_hat <span class="ot">&lt;-</span> B_hat[<span class="dv">1</span>]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>B1_hat <span class="ot">&lt;-</span> B_hat[<span class="dv">2</span>]</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#3) calculating residuals and variance</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>Y_hat <span class="ot">&lt;-</span> X <span class="sc">%*%</span> B_hat</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> Y <span class="sc">-</span> Y_hat</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> <span class="fu">t</span>(e) <span class="sc">%*%</span> e</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>SST <span class="ot">&lt;-</span> <span class="fu">sum</span>((Y<span class="sc">-</span><span class="fu">mean</span>(Y))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>s_squared <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(SSE<span class="sc">/</span>(n<span class="sc">-</span>k))</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#4) calculating Standard Errors</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>cov_mat_B <span class="ot">&lt;-</span> s_squared <span class="sc">*</span> <span class="fu">solve</span>(<span class="fu">t</span>(X)<span class="sc">%*%</span>X)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>se_B <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(cov_mat_B))</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>se_B0 <span class="ot">&lt;-</span> se_B[<span class="dv">1</span>]</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>se_B1 <span class="ot">&lt;-</span> se_B[<span class="dv">2</span>]</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">#5) t,f &amp; p - values</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>t_B0 <span class="ot">&lt;-</span> B0_hat<span class="sc">/</span>se_B0</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>t_B1 <span class="ot">&lt;-</span> B1_hat<span class="sc">/</span>se_B1</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>p_B0 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="fu">abs</span>(t_B0), <span class="at">df =</span> n <span class="sc">-</span> k, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>p_B1 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="fu">abs</span>(t_B1), <span class="at">df =</span> n <span class="sc">-</span> k, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>F_stat <span class="ot">&lt;-</span> ((SST<span class="sc">-</span>SSE)<span class="sc">/</span>(k<span class="dv">-1</span>)) <span class="sc">/</span> s_squared</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>p_F <span class="ot">&lt;-</span> <span class="fu">pf</span>(F_stat, <span class="at">df1 =</span> k <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n <span class="sc">-</span> k, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co">#5) multiple R squared and R-adjusted</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>R_squared <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (SSE<span class="sc">/</span>SST)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>R_adj <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span>(<span class="dv">1</span><span class="sc">-</span>R_squared)<span class="sc">*</span>((n<span class="dv">-1</span>)<span class="sc">/</span>(n<span class="sc">-</span>k))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Coefficients:</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              estimates std_errors   t_values     p_values signif
+(Intercept) 16.01736906  2.8692957  5.5823347 1.101937e-07       
+X1          -0.02616225  0.1579385 -0.1656483 8.686598e-01       </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Residual standard error:  7.36 on 149 degrees of freedom.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Multiple R-squared:  2e-04  Adjusted R-squared:  -0.0066 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>F-statistic:  0.03 on 1 and 148 DF, p-value:  0.8687 </code></pre>
+</div>
+</div>
+<hr>
 </section>
 <section id="simultaneous-hypothesis-test" class="level4">
 <h4 class="anchored" data-anchor-id="simultaneous-hypothesis-test">Simultaneous Hypothesis Test:</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From first principles, perform a simultaneous hypothesis test for the effect of energy_efficiency on consumption_kwh.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#1) design matrix and variables</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>Average <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(energy_efficiency <span class="sc">==</span> <span class="st">"Average"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>Good <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(energy_efficiency <span class="sc">==</span> <span class="st">"Good"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>Excellent <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(energy_efficiency <span class="sc">==</span> <span class="st">"Excellent"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>X_eff <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>, Average, Good, Excellent)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(X_eff) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Intercept"</span>, <span class="st">"$</span><span class="sc">\\</span><span class="st">beta_{Average}$"</span>, <span class="st">"$</span><span class="sc">\\</span><span class="st">beta_{Good}$"</span>, <span class="st">"$</span><span class="sc">\\</span><span class="st">beta_{Excellent}$"</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Y is the same</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>n_eff <span class="ot">&lt;-</span> <span class="fu">nrow</span>(X_eff)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>k_eff <span class="ot">&lt;-</span> <span class="fu">ncol</span>(X_eff)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#2) finding regression coefficients</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>B_hat_eff <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X_eff)<span class="sc">%*%</span>X_eff)<span class="sc">%*%</span><span class="fu">t</span>(X_eff)<span class="sc">%*%</span>Y</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co">#3) calculating residuals and variance</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>Y_hat_eff <span class="ot">&lt;-</span> X_eff <span class="sc">%*%</span> B_hat_eff</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>e_eff <span class="ot">&lt;-</span> Y <span class="sc">-</span> Y_hat_eff</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>SSE_eff <span class="ot">&lt;-</span> <span class="fu">t</span>(e_eff) <span class="sc">%*%</span> e_eff</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>SST_eff <span class="ot">&lt;-</span> <span class="fu">sum</span>((Y<span class="sc">-</span><span class="fu">mean</span>(Y))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>s_squared_eff <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(SSE_eff<span class="sc">/</span>(n<span class="sc">-</span>k))</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>vcov_B_eff <span class="ot">&lt;-</span> s_squared_eff <span class="sc">*</span> <span class="fu">solve</span>(<span class="fu">t</span>(X_eff)<span class="sc">%*%</span>X_eff)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(B_hat_eff) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(X_eff)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="co">#4) L matrix for Hypothesis test: H0 = B_average = B_good = B_excellent</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>              <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, </span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>              <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>), </span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(L) <span class="ot">&lt;-</span> <span class="fu">names</span>(B_hat_eff)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="co">#5) contrasts</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>contrast <span class="ot">&lt;-</span> L <span class="sc">%*%</span> B_hat_eff</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>vcov_contrast <span class="ot">&lt;-</span> L <span class="sc">%*%</span> vcov_B_eff <span class="sc">%*%</span> <span class="fu">t</span>(L)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="co">#5) F statistic and p-value</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>F_stat_eff <span class="ot">&lt;-</span> <span class="fu">t</span>(contrast) <span class="sc">%*%</span> <span class="fu">solve</span>(vcov_contrast) <span class="sc">%*%</span> contrast <span class="sc">/</span> <span class="fu">nrow</span>(L)</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>F_stat_eff <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(F_stat_eff)</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>p_value_F <span class="ot">&lt;-</span> <span class="fu">pf</span>(F_stat_eff, <span class="at">df1 =</span> <span class="fu">nrow</span>(L), <span class="at">df2 =</span> n_eff <span class="sc">-</span> k_eff, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p>Null Hypothesis: <span class="math display">\[H_{0}: \beta_{Poor} = \beta_{Average} = \beta_{Good} = \beta_{Excellent} = 0\]</span></p>
+<p>Alternative Hypothesis: <span class="math display">\[H_{1}: \text{At least one of } (\beta_{Poor}, \beta_{Average}, \beta_{Good}, \beta_{Excellent}) \neq 0\]</span> Test-statistic: <span class="math display">\[F_{stat} =  0.344 \]</span> p-value: <span class="math display">\[p_{value} =  0.7934  &gt; 0.05 \]</span> Conclusion: <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we fail to reject } H_{0}.\]</span><span class="math display">\[\text{Because there is no significant overall effect of energy efficiency} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &gt; 0.05).\]</span></p>
+<hr>
 </section>
 </section>
 <section id="section-4-multiple-linear-regression" class="level3">

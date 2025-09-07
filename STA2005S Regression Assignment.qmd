@@ -37,6 +37,7 @@ library(MASS)
 library(reshape2)
 library(reactable)
 library(shiny)
+library(knitr)
 
 data <- data_tidy_energy_use
 
@@ -77,7 +78,8 @@ col_palette = c (
 )
 
 ```
----
+
+------------------------------------------------------------------------
 
 ## Part One: Analysis
 
@@ -204,6 +206,7 @@ pairs(x = cts_variables, pch = 19,
 
 ```{r}
 #| fig-align: "center"
+#| echo: FALSE
 
 # Plot consumption_kwh against each categorical variable. Namely: Solar_installed, Energy_efficient, days_of_the_week, and holiday
 
@@ -254,6 +257,7 @@ boxplot(consumption_kwh ~ holiday, data = data,
 #### Categorical Relationships:
 
 ###### Energy Efficiency vs Solar Usage Table:
+
 ```{r}
 #| echo: false
 
@@ -282,9 +286,11 @@ reactable(efficiency_solar,
           )
 
 ```
+
 <br>
 
 ###### Weekdays vs Holidays Table:
+
 ```{r}
 #| echo: false
   
@@ -329,7 +335,6 @@ B_hat <- solve(t(X)%*%X)%*%t(X)%*%Y
 B0_hat <- B_hat[1]
 B1_hat <- B_hat[2]
 
-
 #3) calculating residuals and variance
 
 Y_hat <- X %*% B_hat
@@ -338,7 +343,8 @@ SSE <- t(e) %*% e
 SST <- sum((Y-mean(Y))^2)
 s_squared <- as.numeric(SSE/(n-k))
 
-#4) Calculating Standard Errors
+#4) calculating Standard Errors
+
 cov_mat_B <- s_squared * solve(t(X)%*%X)
 se_B <- sqrt(diag(cov_mat_B))
 se_B0 <- se_B[1]
@@ -350,28 +356,127 @@ t_B0 <- B0_hat/se_B0
 t_B1 <- B1_hat/se_B1
 p_B0 <- 2 * pt(abs(t_B0), df = n - k, lower.tail = FALSE)
 p_B1 <- 2 * pt(abs(t_B1), df = n - k, lower.tail = FALSE)
-F_stat <- ((SST-RSS)/(k-1)) / s_squared
-p_F <- pf(F_stat, df = k - 1, lower.tail = FALSE)
+F_stat <- ((SST-SSE)/(k-1)) / s_squared
+p_F <- pf(F_stat, df1 = k - 1, df2 = n - k, lower.tail = FALSE)
 
-#5) Multiple R squared and R-adjusted
+#5) multiple R squared and R-adjusted
+
 R_squared <- 1 - (SSE/SST)
-R_adj <- 1-(1-R_sqaured)*((n-1)/(n-k))
+R_adj <- 1-(1-R_squared)*((n-1)/(n-k))
 
+```
+
+```{r}
+#| echo: FALSE
 
 # Reproduce the summary() output, working from the coefficients table down
 
-cat("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
-cat("Residual standard error: ", round(s_squared, 2), " on ", n-p, " degrees of freedom")
-cat("Multiple R-squared: ",R_squared, "\t Adjusted R-squared: ",R_adj )
-cat("F-statistic: ")
+stars = character(2)
+for (i in 1:2){
+  p_value = c(p_B0, p_B1)[i]
+  if (i<0.001){ stars[i] = "***" } 
+  else if (i < 0.01){ stars[i] = '**' }
+  else if (i < 0.05){ stars[i] = '*' }
+  else if (i < 0.1) { stars[i] = "."}
+}
+  
+coeff_table <- data.frame(
+                estimates = c(B0_hat, B1_hat),
+                std_errors = c(se_B0, se_B1),
+                t_values = c(t_B0, t_B1),
+                p_values =c(p_B0, p_B1),
+                signif = stars
+                  )
+rownames(coeff_table) <- c("(Intercept)", "X1")
+
+cat("\nCoefficients:")
+
+print(coeff_table)
+
+cat("\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
+cat("Residual standard error: ", round(sqrt(s_squared), 2), "on", n-p, "degrees of freedom.\n")
+cat("Multiple R-squared: ",round(R_squared, 4), "\tAdjusted R-squared: ",round(R_adj, 4), "\n" )
+cat("F-statistic: ", round(F_stat, 2), "on", k-1, "and", n-k, "DF, p-value: ", round(p_F, 4), "\n")
 ```
+
+------------------------------------------------------------------------
 
 #### Simultaneous Hypothesis Test:
 
 ```{r}
+# From first principles, perform a simultaneous hypothesis test for the effect of energy_efficiency on consumption_kwh.
+
+#1) design matrix and variables
+
+Average <- as.numeric(energy_efficiency == "Average")
+Good <- as.numeric(energy_efficiency == "Good")
+Excellent <- as.numeric(energy_efficiency == "Excellent")
+
+X_eff <- cbind(1, Average, Good, Excellent)
+colnames(X_eff) <- c("Intercept", "$\\beta_{Average}$", "$\\beta_{Good}$", "$\\beta_{Excellent}$")
+#Y is the same
+n_eff <- nrow(X_eff)
+k_eff <- ncol(X_eff)
+
+#2) finding regression coefficients
+
+B_hat_eff <- solve(t(X_eff)%*%X_eff)%*%t(X_eff)%*%Y
+
+#3) calculating residuals and variance
+
+Y_hat_eff <- X_eff %*% B_hat_eff
+e_eff <- Y - Y_hat_eff
+SSE_eff <- t(e_eff) %*% e_eff
+SST_eff <- sum((Y-mean(Y))^2)
+s_squared_eff <- as.numeric(SSE_eff/(n-k))
+vcov_B_eff <- s_squared_eff * solve(t(X_eff)%*%X_eff)
+names(B_hat_eff) <- colnames(X_eff)
+
+#4) L matrix for Hypothesis test: H0 = B_average = B_good = B_excellent
+
+L <- matrix(c(0, 1, 0, 0, 
+              0, 0, 1, 0, 
+              0, 0, 0, 1), 
+            nrow = 3, byrow = TRUE)
+colnames(L) <- names(B_hat_eff)
+
+#5) contrasts
+
+contrast <- L %*% B_hat_eff
+vcov_contrast <- L %*% vcov_B_eff %*% t(L)
+
+#5) F statistic and p-value
+
+F_stat_eff <- t(contrast) %*% solve(vcov_contrast) %*% contrast / nrow(L)
+F_stat_eff <- as.numeric(F_stat_eff)
+
+p_value_F <- pf(F_stat_eff, df1 = nrow(L), df2 = n_eff - k_eff, lower.tail = FALSE)
+                                                         
+```
+***
+```{r, results = "asis"}
+#| echo: FALSE
+# Output
+
+cat("Null Hypothesis: ")
+cat("$$H_{0}: \\beta_{Poor} = \\beta_{Average} = \\beta_{Good} = \\beta_{Excellent} = 0$$\n\n")
+
+cat("Alternative Hypothesis: ")
+cat("$$H_{1}: \\text{At least one of } (\\beta_{Poor}, \\beta_{Average}, \\beta_{Good}, \\beta_{Excellent}) \\neq 0$$\n")
+
+cat("Test-statistic: ")
+cat("$$F_{stat} = ", round(F_stat_eff, 3), "$$\n")
+
+cat("p-value: ")
+cat("$$p_{value} = ", round(p_value_F, 4), " > 0.05 $$\n")
+
+cat("Conclusion: ")
+cat("$$\\text{At the } \\alpha = 0.05 \\text{ significance level, we fail to reject } H_{0}.$$")
+cat("$$\\text{Because there is no significant overall effect of energy efficiency} $$")
+cat("$$\\text{on energy consumption } (p_{value} > 0.05).$$\n")
 
 ```
-
+***
 ### Section 4: Multiple Linear Regression
 
 #### Fit Model:
@@ -412,12 +517,9 @@ cat("F-statistic: ")
 
 ```
 
-
----
+------------------------------------------------------------------------
 
 ## Part Two: Simulation of Power
-
-
 
 ### Scenario A: Baseline Normal Errors
 
