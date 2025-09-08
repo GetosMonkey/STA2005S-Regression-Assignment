@@ -38,6 +38,8 @@ library(reshape2)
 library(reactable)
 library(shiny)
 library(knitr)
+library(gganimate)
+library(gifski)
 
 data <- data_tidy_energy_use
 
@@ -662,8 +664,6 @@ cat("$$\\text{on energy consumption } (p_{value} < 0.05).$$\n")
 
 #setup
 
-set.seed(25)
-x_vec <- runif(25, 0, 1)
 B0_sim <- 12
 sigma_sq <- 6.25
 sd_sim <- sqrt(sigma_sq)
@@ -673,8 +673,10 @@ n_sim <- 1000
 
 ### Scenario A: Baseline Normal Errors
 
-```{r, results='asis'}
+```{r}
 
+set.seed(25)
+x_vec_A <- runif(25, 0, 1)
 B1_sim_A <- c(0.5, 1, 2, 5, 10)
 
 results_A <- data.frame(
@@ -689,10 +691,10 @@ for ( i in seq_along(B1_sim_A)){
       
       for (sim in 1:n_sim){
         
-        E_A <- rnorm(length(x_vec), mean = 0, sd = sd_sim)
-        Y_A <- B0_sim + B1_A * x_vec + E_A
+        E_A <- rnorm(length(x_vec_A), mean = 0, sd = sd_sim)
+        Y_A <- B0_sim + B1_A * x_vec_A + E_A
         
-        fit_A <- lm(Y_A ~ x_vec)
+        fit_A <- lm(Y_A ~ x_vec_A)
         p_val_A <- summary(fit_A)$coefficients[2, 4]
         
         if (p_val_A < 0.05){ rejections_A = rejections_A +1 }
@@ -702,7 +704,7 @@ for ( i in seq_along(B1_sim_A)){
       } 
 ```
 
-```{r}
+```{r, results='asis'}
 #| echo: false
 
 #Tabulate results: 
@@ -714,10 +716,87 @@ kable(
 
 ```
 
+##### comments:
+
 ------------------------------------------------------------------------
 
 ### Scenario B: Non-linear Truth/Exponential Relationship
 
 ```{r}
 
+sample_sizes <- c(5, 10, 20, 50)
+B1_B <- 0.01
+
+results_B <- data.frame(
+              n_B = rep(sample_sizes, each = 2),
+              model = rep(c("Linear", "Exponential"), times = length(sample_sizes)),
+              power = numeric(length(sample_sizes)*2)
+              )
+
+set.seed(25)
+row_index <- 1
+
+for (size in seq_along(sample_sizes)){
+    
+    n_current = sample_sizes[size]
+    
+    x_vec_B <- seq(0, 7, length.out = n_current)
+    rejections_linear = 0
+    rejections_exp = 0
+    
+    for (sim in 1: n_sim){
+      
+        E_B <- rnorm(n_current, mean = 0, sd = sd_sim)
+        Y_B <- B0_sim + B1_B * exp(x_vec_B) + E_B
+        
+        fit_linear <- lm(Y_B ~ x_vec_B)
+        p_val_linear <- summary(fit_linear)$coefficients[2, 4]
+        
+        fit_exp <- lm(Y_B ~ exp(x_vec_B))
+        p_val_exp <- summary(fit_exp)$coefficients[2, 4]
+        
+        if (p_val_linear < 0.05){ rejections_linear = rejections_linear +1 }
+        if (p_val_exp < 0.05){ rejections_exp = rejections_exp +1 }
+    }
+    results_B$power[row_index] <- rejections_linear/n_sim
+    results_B$power[row_index+1] <- rejections_exp/n_sim
+    row_index = row_index + 2
+    }
+
 ```
+
+```{r}
+#| echo: false
+#| warning: false
+
+# Table results
+print(results_B)
+
+# Base graph
+graph1 <- 
+  ggplot(results_B, aes(x = n_B, y = power, color = model, linetype = model)) +
+  geom_line(linewidth = 1.4) +
+  geom_point(size = 2) +
+  
+  scale_color_manual(values = c("Linear" = col_palette[6], "Exponential" = col_palette[13])) +
+  scale_linetype_manual(values = c("Linear" = 2, "Exponential" = 1)) +
+  
+  labs(title = "Line Graph of Statistical Power: Linear vs Exponential Models",
+       x = "Sample Size (n)",
+       y = "Statistical Power",
+       color = "Model Type", 
+       linetype = "Model Type"
+       ) +
+  theme_minimal() +
+  scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.2))
+  
+
+graph1_animation <- 
+  graph1 + 
+  transition_reveal(n_B)
+  
+animate(graph1_animation)
+graph1
+
+```
+##### conclusion & design insight:

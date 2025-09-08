@@ -16,4 +16,8 @@ In addition, there are 10 marks for presentation across both parts, focusing on 
 2) https://www.sthda.com/english/wiki/ggplot2-density-plot-quick-start-guide-r-software-and-data-visualization
 3) https://www.sthda.com/english/wiki/scatter-plot-matrices-r-base-graphs
 4) https://rfortherestofus.com/2019/11/how-to-make-beautiful-tables-in-r
-5) 
+5) https://glin.github.io/reactable/index.html
+6) https://www.r-bloggers.com/2020/05/4-great-alternatives-to-standard-graphs-using-ggplot
+7) https://r-graph-gallery.com/package/gganimate.html
+8) https://www.youtube.com/watch?v=SnCi0s0e4Io
+9) 
