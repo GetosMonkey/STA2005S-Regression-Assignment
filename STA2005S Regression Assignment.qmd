@@ -657,9 +657,58 @@ cat("$$\\text{on energy consumption } (p_{value} < 0.05).$$\n")
 
 ## Part Two: Simulation of Power
 
+```{r}
+#| echo: FALSE
+
+#setup
+
+set.seed(25)
+x_vec <- runif(25, 0, 1)
+B0_sim <- 12
+sigma_sq <- 6.25
+sd_sim <- sqrt(sigma_sq)
+n_sim <- 1000
+
+```
+
 ### Scenario A: Baseline Normal Errors
 
+```{r, results='asis'}
+
+B1_sim_A <- c(0.5, 1, 2, 5, 10)
+
+results_A <- data.frame(
+              B1_A = B1_sim_A, 
+              power = numeric(length(B1_sim_A))
+              )
+
+for ( i in seq_along(B1_sim_A)){
+  
+      B1_A <- B1_sim_A[i]
+      rejections_A = 0
+      
+      for (sim in 1:n_sim){
+        
+        E_A <- rnorm(length(x_vec), mean = 0, sd = sd_sim)
+        Y_A <- B0_sim + B1_A * x_vec + E_A
+        
+        fit_A <- lm(Y_A ~ x_vec)
+        p_val_A <- summary(fit)$coefficients[2, 4]
+        
+        if (p_val_A < 0.05){ rejections_A = rejections_A +1 }
+        
+      } } 
+```
+
 ```{r}
+#| echo: false
+
+#Tabulate results: 
+
+kable(
+  results_A, 
+  col.names = c("$\\beta1_{A}$", "power")
+  )
 
 ```
 
