@@ -158,12 +158,23 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="section-1-introduction">Section 1: Introduction</h3>
 <section id="problem-unknown" class="level4">
 <h4 class="anchored" data-anchor-id="problem-unknown">Problem &amp; Unknown:</h4>
+<p>The problem being addressed is understanding what factors most influence daily household electricity consumption (kWh) in Cape Town, so that with the insights gained we can better support demand management, tariff design, and energy-efficiency interventions.</p>
+<p>The unknown factors under investigation are: environmental conditions ( outside temperature, humidity, and wind speed), household characteristics (household size, appliance type, efficiency rating, and solar installation status), and time factors(day of the week and holiday status).</p>
 </section>
 <section id="analysis-summary" class="level4">
 <h4 class="anchored" data-anchor-id="analysis-summary">Analysis Summary:</h4>
+<p>Our analytical approach consists of thorough data exploration and visualization using a variety of inferential techniques namely:</p>
+<ol type="1">
+<li>Visualizations with density plots, pairwise plots, and categorical plots; to get a holistic understanding of all factors on electricity consumption.</li>
+<li>Simple linear regression, to test the effect of outside temperature on electricity consumption</li>
+<li>Single variable hypothesis testing, to test the effect of energy efficiency on electricity consumption</li>
+<li>Multiple linear regression and Analysis of variance (ANOVA), to model the complex relationships between all predictor variables and electricity consumption</li>
+</ol>
+<p>We expect household characteristic predictor variables such as household size, energy efficiency rating and solar installation status to be the strongest predictors of household electricity consumption, and for environmental and time factors to be comparatively weak predictors.</p>
 </section>
 <section id="nature-of-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="nature-of-analysis">Nature of analysis:</h4>
+<p>The primary goal of the analysis is explanatory as we seek to understand and explain the relationships between the various factors and electricity consumption to inform later decision making, rather than to build a predictive model for future consumption.</p>
 </section>
 </section>
 <section id="section-2-data-exploration" class="level3">
@@ -193,11 +204,14 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<section id="shape" class="level6">
+<h6 class="anchored" data-anchor-id="shape">Shape:</h6>
+<p>The underlying distribution of consumption (kWh) is bimodal with two clear peaks around 7 and 22 kWh. It is fairly symmetric about these two peaks and does not display a wide spread/range. Because of the bimodality, the overlaid normal density does not align well with the data implying that the underlying overall distribution is not normal.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the density of consumption_kwh, stratified by solar_installed, with overlaid normal densities. Comment on the shape, and consider why the densities changes from the unstratified case.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -233,11 +247,16 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+</section>
+<section id="shape-1" class="level6">
+<h6 class="anchored" data-anchor-id="shape-1">Shape:</h6>
+<p>When stratified by solar installation status, the electricity consumption distributions for households with and without solar installed closely match their respective overlaid normal densities. This implies that within these groups the observations are approximately normally distributed and reinforces the bimodality we found in the unstratified case.This implies that solar installation status has a major influence on household electricity consumption.</p>
+</section>
 </section>
 <section id="pairwise-plots" class="level4">
 <h4 class="anchored" data-anchor-id="pairwise-plots">Pairwise Plots:</h4>
@@ -269,7 +288,7 @@ window.Quarto = {
 <div class="cell quarto-layout-panel" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid"></p>
+<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid"></p>
 </div>
 </div>
 </div>
@@ -280,28 +299,28 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-9-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-9-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -313,8 +332,8 @@ window.Quarto = {
 <h6 class="anchored" data-anchor-id="energy-efficiency-vs-solar-usage-table">Energy Efficiency vs Solar Usage Table:</h6>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-808bcf602a55b5eae314" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-808bcf602a55b5eae314">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Poor","Average","Good","Excellent"],"Yes":[12,31,24,9],"No":[16,28,22,8]},"columns":[{"id":".rownames","name":"Energy Efficiency","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"Yes","name":"Solar use","type":"numeric"},{"id":"No","name":"No Solar","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"f62a3d31c1458f5e45b4eaed5cb757f9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-0f1903b09d6df85fdaab" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0f1903b09d6df85fdaab">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Poor","Average","Good","Excellent"],"Yes":[12,31,24,9],"No":[16,28,22,8]},"columns":[{"id":".rownames","name":"Energy Efficiency","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"Yes","name":"Solar use","type":"numeric"},{"id":"No","name":"No Solar","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"f62a3d31c1458f5e45b4eaed5cb757f9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -323,14 +342,39 @@ window.Quarto = {
 <h6 class="anchored" data-anchor-id="weekdays-vs-holidays-table">Weekdays vs Holidays Table:</h6>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-bfe34ea44671e53ad32a" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-bfe34ea44671e53ad32a">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"0":[31,18,17,19,18,13,28],"1":[5,0,1,0,0,0,0]},"columns":[{"id":".rownames","name":"Day of the Week","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"0","name":"No Holiday","type":"numeric"},{"id":"1","name":"Holiday","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"af7f7cd3ef2fe65896f85c7b9701ba78"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-b02bbae5505c09903d60" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b02bbae5505c09903d60">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"0":[31,18,17,19,18,13,28],"1":[5,0,1,0,0,0,0]},"columns":[{"id":".rownames","name":"Day of the Week","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"0","name":"No Holiday","type":"numeric"},{"id":"1","name":"Holiday","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"af7f7cd3ef2fe65896f85c7b9701ba78"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
 </section>
 <section id="comments" class="level4">
 <h4 class="anchored" data-anchor-id="comments">Comments:</h4>
+<p><strong>Observed Relationships:</strong></p>
+<ul>
+<li><p>From our density plots their is a clear difference in electricity consumption distributions between households with solar installation and without. This is the most prominent relationship - households with solar installed show lower average electricity consumption than households without.</p></li>
+<li><p>From our Pairwise scatterplot there is a positive linear relationship between household size and electricity consumption, stratified by household use of solar power as seen below:</p></li>
+</ul>
+<div id="fig-scatterplot" class="figure quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="scatterplot.png" class="img-fluid figure-img" width="150">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Scatterplot of Electricity Consumption by Household Size
+</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>From our boxplots the mean consumption of electricity on a weekday is lower than the mean consumption of electricity during the weekend.</p></li>
+<li><p>From our boxplots, energy efficiency ratings have little effect on mean household electricity consumption unless the efficiency rating is “Poor”. Poorly rated households experience higher average electricity consumption.</p></li>
+<li><p>From our pairwise scatterplots there appears to be very weak relationships between environmental factors and household electricity consumption.</p></li>
+</ul>
+<p><strong>Potential Collinearity:</strong></p>
+<p>From our pairwise scatterplot we can see that their is potential collinearity between the environmental factors since there appears to be a positive linear relationship between temperature-and-humidity as well as humidity-and-windspeed. This is to be expected as weather conditions often co-vary.</p>
+<p>From our tables there appears to be potential collinearity between energy efficiency and solar installation, with poor efficiency being associated with no solar usage, but not majorly so as other ranks of efficiency show no clear relationship with solar usage.</p>
+<p><strong>Outliers:</strong></p>
+<p>There are no outlying observations of note.</p>
 </section>
 </section>
 <section id="section-3-simple-linear-regression" class="level3">
@@ -661,7 +705,14 @@ outside_temperature:humidity 4.44e-01  -0.00998   0.0044</code></pre>
 </tbody>
 </table>
 <section id="comments-1" class="level5">
-<h5 class="anchored" data-anchor-id="comments-1">comments:</h5>
+<h5 class="anchored" data-anchor-id="comments-1">Comments:</h5>
+<p>From the tabulated results there is a clear monotonic, increasing relationship between the effect size (<span class="math inline">\(\beta1_{A}\)</span>) and estimated statistical power (the probability of correctly rejecting a false null hypothesis, <span class="math inline">\(1-\beta\)</span>).</p>
+<p><strong>Notably:</strong></p>
+<ol type="1">
+<li><p>There is a low estimated statistical power at small effect sizes. At <span class="math inline">\(\beta_{1}\)</span> = 0.5, the estimated power is incredibly small at 4.5% which indicates a very high risk of a Type 2 error when test for small effect sizes.</p></li>
+<li><p>There is a high estimated statistical power at large effect sizes.At <span class="math inline">\(\beta_{1}\)</span> = 5, the estimated power of the test is 77.7% and reaches 100% at <span class="math inline">\(\beta_{1}\)</span> = 10, indicating a very low risk of a Type 2 error when testing for large effect sizes</p></li>
+<li><p>Changes in the generative seed used changes the power results but not the overall observed trend.</p></li>
+</ol>
 <hr>
 </section>
 </section>
@@ -722,21 +773,33 @@ outside_temperature:humidity 4.44e-01  -0.00998   0.0044</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-27-1.gif" class="img-fluid figure-img"></p>
+<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-24-1.gif" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-27-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-24-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="conclusion-design-insight" class="level5">
-<h5 class="anchored" data-anchor-id="conclusion-design-insight">conclusion &amp; design insight:</h5>
+<section id="comments-2" class="level5">
+<h5 class="anchored" data-anchor-id="comments-2">Comments:</h5>
+<p>From the graphs and the tabulated results there is a clear monotonic increasing relationship between the sample size <span class="math inline">\(n\)</span> and the estimated statistical power (<span class="math inline">\(1- \beta\)</span>). The concave downwards curve of the graph shows underlying logarithmic growth, tending towards an asymptote of <span class="math inline">\(\beta = 1\)</span>. This is true for both the linear and exponential model.</p>
+<p><strong>Notably:</strong></p>
+<ol type="1">
+<li><p>The exponential model produces consistently better (higher) estimated statistical power than the linear model, irrespective of <span class="math inline">\(n\)</span>. This is because the linear model is mis-specified whilst the exponential model is a correct/ accurate representation of the effective of <span class="math inline">\(n\)</span> on estimated statistical power. This difference is clearest for small <span class="math inline">\(n\)</span>.</p></li>
+<li><p>There is a low estimated statistical power for small <span class="math inline">\(n\)</span>. At <span class="math inline">\(n\)</span> = 5, the estimated power is very small at 17.4% for the linear model and moderate at 69.8% for the exponential model. This indicates a moderate to high risk of a Type 2 error when test for small <span class="math inline">\(n\)</span>.</p></li>
+<li><p>There is a high estimated statistical power at for large <span class="math inline">\(n\)</span>. At <span class="math inline">\(n\)</span> = 20, the estimated power of the test is very high at 90.1% for the linear model and 99.5% for the exponential model, reaching 100% at <span class="math inline">\(n\)</span> = 50 for both models. This indicates an incredibly low risk of a Type 2 error when testing for large <span class="math inline">\(n\)</span>.</p></li>
+</ol>
+<hr>
 </section>
+</section>
+<section id="conclusion-design-insight" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion-design-insight">Conclusion &amp; design insight:</h3>
+<hr>
 </section>
 </section>
 </section>

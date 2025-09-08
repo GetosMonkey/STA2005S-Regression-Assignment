@@ -89,21 +89,24 @@ col_palette = c (
 
 #### Problem & Unknown:
 
-```{r}
+The problem being addressed is understanding what factors most influence daily household electricity consumption (kWh) in Cape Town, so that with the insights gained we can better support demand management, tariff design, and energy-efficiency interventions.
 
-```
+The unknown factors under investigation are: environmental conditions ( outside temperature, humidity, and wind speed), household characteristics (household size, appliance type, efficiency rating, and solar installation status), and time factors(day of the week and holiday status).
 
 #### Analysis Summary:
 
-```{r}
+Our analytical approach consists of thorough data exploration and visualization using a variety of inferential techniques namely:
 
-```
+1)  Visualizations with density plots, pairwise plots, and categorical plots; to get a holistic understanding of all factors on electricity consumption.
+2)  Simple linear regression, to test the effect of outside temperature on electricity consumption
+3)  Single variable hypothesis testing, to test the effect of energy efficiency on electricity consumption
+4)  Multiple linear regression and Analysis of variance (ANOVA), to model the complex relationships between all predictor variables and electricity consumption
+
+We expect household characteristic predictor variables such as household size, energy efficiency rating and solar installation status to be the strongest predictors of household electricity consumption, and for environmental and time factors to be comparatively weak predictors.
 
 #### Nature of analysis:
 
-```{r}
-
-```
+The primary goal of the analysis is explanatory as we seek to understand and explain the relationships between the various factors and electricity consumption to inform later decision making, rather than to build a predictive model for future consumption.
 
 ### Section 2: Data Exploration
 
@@ -131,6 +134,9 @@ curve(dnorm(x, mean = mean_kwh, sd = sd_kwh),
       )
 
 ```
+###### Shape: 
+
+The underlying distribution of consumption (kWh) is bimodal with two clear peaks around 7 and 22 kWh. It is fairly symmetric about these two peaks and does not display a wide spread/range. Because of the bimodality, the overlaid normal density does not align well with the data implying that the underlying overall distribution is not normal.
 
 ```{r}
 #| warning: false
@@ -167,6 +173,9 @@ ggplot(data, aes(x = consumption_kwh, fill = solar_installed)) +
   theme_minimal()
   
 ```
+###### Shape: 
+
+When stratified by solar installation status, the electricity consumption distributions for households with and without solar installed closely match their respective overlaid normal densities. This implies that within these groups the observations are approximately normally distributed and reinforces the bimodality we found in the unstratified case.This implies that solar installation status has a major influence on household electricity consumption.
 
 #### Pairwise Plots:
 
@@ -315,6 +324,34 @@ reactable(days_holidays,
 ```
 
 #### Comments:
+
+**Observed Relationships:**
+
+- From our density plots their is a clear difference in electricity consumption distributions between households with solar installation and without. This is the most prominent relationship - households with solar installed show lower average electricity consumption than households without.
+
+- From our Pairwise scatterplot there is a positive linear relationship between household size and electricity consumption, stratified by household use of solar power as seen below:
+
+::: {#fig-scatterplot .figure}
+![](scatterplot.png){width=150px}
+
+Scatterplot of Electricity Consumption by Household Size
+:::
+
+- From our boxplots the mean consumption of electricity on a weekday is lower than the mean consumption of electricity during the weekend.
+
+- From our boxplots, energy efficiency ratings have little effect on mean household electricity consumption unless the efficiency rating is "Poor". Poorly rated households experience higher average electricity consumption.
+
+- From our pairwise scatterplots there appears to be very weak relationships between environmental factors and household electricity consumption. 
+
+**Potential Collinearity:**
+
+From our pairwise scatterplot we can see that their is potential collinearity between the environmental factors since there appears to be a positive linear relationship between temperature-and-humidity as well as humidity-and-windspeed. This is to be expected as weather conditions often co-vary.
+
+From our tables there appears to be potential collinearity between energy efficiency and solar installation, with poor efficiency being associated with no solar usage, but not majorly so as other ranks of efficiency show no clear relationship with solar usage.
+
+**Outliers:**
+
+There are no outlying observations of note.
 
 ### Section 3: Simple Linear Regression
 
@@ -716,7 +753,18 @@ kable(
 
 ```
 
-##### comments:
+##### Comments:
+
+From the tabulated results there is a clear monotonic, increasing relationship between the effect size ($\beta1_{A}$) and estimated statistical power (the probability of correctly rejecting a false null hypothesis, $1-\beta$).
+
+**Notably:**
+
+1) There is a low estimated statistical power at small effect sizes. At $\beta_{1}$ = 0.5, the estimated power is incredibly small at 4.5% which indicates a very high risk of a Type 2 error when test for small effect sizes.
+
+2) There is a high estimated statistical power at large effect sizes.At $\beta_{1}$ = 5, the estimated power of the test is 77.7% and reaches 100% at $\beta_{1}$ = 10, indicating a very low risk of a Type 2 error when testing for large effect sizes
+
+3) Changes in the generative seed used changes the power results but not the overall observed trend.
+
 
 ------------------------------------------------------------------------
 
@@ -799,4 +847,23 @@ animate(graph1_animation)
 graph1
 
 ```
-##### conclusion & design insight:
+
+##### Comments:
+
+From the graphs and the tabulated results there is a clear monotonic increasing relationship between the sample size $n$ and the estimated statistical power ($1- \beta$). The concave downwards curve of the graph shows underlying logarithmic growth, tending towards an asymptote of $\beta = 1$. This is true for both the linear and exponential model.
+
+**Notably:**
+
+1) The exponential model produces consistently better (higher) estimated statistical power than the linear model, irrespective of $n$. This is because the linear model is mis-specified whilst the exponential model is a correct/ accurate representation of the effective of $n$ on estimated statistical power. This difference is clearest for small $n$.
+
+2) There is a low estimated statistical power for small $n$. At $n$ = 5, the estimated power is very small at 17.4% for the linear model and moderate at 69.8% for the exponential model. This indicates a moderate to high risk of a Type 2 error when test for small $n$.
+
+3) There is a high estimated statistical power at for large $n$. At $n$ = 20, the estimated power of the test is very high at 90.1% for the linear model and 99.5% for the exponential model, reaching 100% at $n$ = 50 for both models. This indicates an incredibly low risk of a Type 2 error when testing for large $n$.
+
+---
+
+### Conclusion & design insight:
+
+
+
+---
