@@ -365,7 +365,7 @@ R_squared <- 1 - (SSE/SST)
 R_adj <- 1-(1-R_squared)*((n-1)/(n-k))
 
 ```
-
+***
 ```{r}
 #| echo: FALSE
 
@@ -485,7 +485,13 @@ cat("$$\\text{on energy consumption } (p_{value} > 0.05).$$\n")
 # Fit a multiple linear regression including all explanatory variables. Include an interaction term between outside_temperature and humidity.
 
 fit <- lm(consumption_kwh ~ 
-            outside_temperature + humidity + wind_speed + household_size + appliance_index + energy_efficiency + solar_installed + day_of_week + holiday +
+            outside_temperature + 
+            humidity + wind_speed + 
+            household_size + 
+            appliance_index + 
+            energy_efficiency + 
+            solar_installed + 
+            day_of_week + holiday +
             outside_temperature:humidity, 
             data = data)
 
@@ -506,8 +512,111 @@ print(table_final, digits = 3)
 #### Hypothesis Testing:
 
 ```{r}
+#| results: hide
+
+# Test whether the following significantly affect consumption_kwh
+
+# Outside Temperature
+fit_no_temp <- lm(consumption_kwh ~ 
+                   humidity + 
+                   wind_speed + 
+                   household_size + 
+                   appliance_index + 
+                   energy_efficiency + 
+                   solar_installed + 
+                   day_of_week + holiday,
+                   data = data)
+
+anova_temp <- anova(fit_no_temp, fit)
+print(anova_temp)
+cat("\n\n")
+
+# Humidity 
+
+fit_no_humidity <- lm(consumption_kwh ~ 
+            outside_temperature + 
+            wind_speed + 
+            household_size + 
+            appliance_index + 
+            energy_efficiency + 
+            solar_installed + 
+            day_of_week + holiday,
+            data = data)
+
+anova_humidity <- anova(fit_no_humidity, fit)
+print(anova_humidity)
+cat("\n\n")
+
+# Solar Installed
+
+fit_no_solar <- lm(consumption_kwh ~ 
+            outside_temperature +
+            energy_efficiency +
+            humidity + 
+            wind_speed + 
+            household_size + 
+            appliance_index +
+            day_of_week + holiday,
+            data = data)
+
+anova_solar <- anova(fit_no_solar, fit)
+print(anova_solar)
+cat("\n\n")
 
 ```
+***
+```{r, results= 'asis'}
+#| echo: FALSE 
+
+# Displaying results: Outside Temperature
+
+cat("$$H_{0}: \\beta_{temperature} = \\beta_{temp:humidity} = 0$$\n\n")
+
+cat("$$H_{1}: \\text{At least one of } (\\beta_{temperature}, \\beta_{temp:humidity}) \\neq 0$$\n")
+
+cat("$$F_{stat} = ", round(anova_temp$F[2], 3), "$$\n")
+
+cat("$$p_{value} = ", round(anova_temp$`Pr(>F)`[2], 4), " > 0.05 $$\n")
+
+cat("$$\\text{At the } \\alpha = 0.05 \\text{ significance level, we fail to reject } H_{0}.$$")
+cat("$$\\text{Because there is no significant overall effect of outside temperature} $$")
+cat("$$\\text{on energy consumption } (p_{value} > 0.05).$$\n")
+
+cat("------------------------------------------------------------------------————————————————\n")
+
+# Displaying results: Humidity
+
+cat("$$H_{0}: \\beta_{humidity} = \\beta_{temp:humidity} = 0$$\n\n")
+
+cat("$$H_{1}: \\text{At least one of } (\\beta_{humidity}, \\beta_{temp:humidity}) \\neq 0$$\n")
+
+cat("$$F_{stat} = ", round(anova_humidity$F[2], 3), "$$\n")
+
+cat("$$p_{value} = ", round(anova_humidity$`Pr(>F)`[2], 4), " > 0.05 $$\n")
+
+cat("$$\\text{At the } \\alpha = 0.05 \\text{ significance level, we fail to reject } H_{0}.$$")
+cat("$$\\text{Because there is no significant overall effect of humidity} $$")
+cat("$$\\text{on energy consumption } (p_{value} > 0.05).$$\n")
+
+cat("------------------------------------------------------------------------————————————————\n")
+
+# Displaying results: Solar Installed
+
+cat("$$H_{0}: \\beta_{solar} = \\beta_{no solar} = 0$$\n\n")
+
+cat("$$H_{1}: \\text{At least one of } (\\beta_{solar}, \\beta_{no solar}) \\neq 0$$\n")
+
+cat("$$F_{stat} = ", round(anova_solar$F[2], 3), "$$\n")
+
+cat("$$p_{value} = ", anova_solar$`Pr(>F)`[2], " < 0.05 $$\n")
+
+cat("$$\\text{At the } \\alpha = 0.05 \\text{ significance level, we reject } H_{0} \\text{ in favor of } H_{1}.$$")
+cat("$$\\text{Because there is a significant overall effect of solar usage} $$")
+cat("$$\\text{on energy consumption } (p_{value} < 0.05).$$\n")
+
+
+```
+***
 
 #### Interpretation:
 

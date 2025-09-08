@@ -313,8 +313,8 @@ window.Quarto = {
 <h6 class="anchored" data-anchor-id="energy-efficiency-vs-solar-usage-table">Energy Efficiency vs Solar Usage Table:</h6>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-8b6fa30c076a21dac36a" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-8b6fa30c076a21dac36a">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Poor","Average","Good","Excellent"],"Yes":[12,31,24,9],"No":[16,28,22,8]},"columns":[{"id":".rownames","name":"Energy Efficiency","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"Yes","name":"Solar use","type":"numeric"},{"id":"No","name":"No Solar","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"f62a3d31c1458f5e45b4eaed5cb757f9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-2d2a1426f58b361c35e5" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2d2a1426f58b361c35e5">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Poor","Average","Good","Excellent"],"Yes":[12,31,24,9],"No":[16,28,22,8]},"columns":[{"id":".rownames","name":"Energy Efficiency","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"Yes","name":"Solar use","type":"numeric"},{"id":"No","name":"No Solar","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"f62a3d31c1458f5e45b4eaed5cb757f9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -323,8 +323,8 @@ window.Quarto = {
 <h6 class="anchored" data-anchor-id="weekdays-vs-holidays-table">Weekdays vs Holidays Table:</h6>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-44130d209de0867d930a" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-44130d209de0867d930a">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"0":[31,18,17,19,18,13,28],"1":[5,0,1,0,0,0,0]},"columns":[{"id":".rownames","name":"Day of the Week","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"0","name":"No Holiday","type":"numeric"},{"id":"1","name":"Holiday","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"af7f7cd3ef2fe65896f85c7b9701ba78"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-aed24aa2b50a70aea083" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-aed24aa2b50a70aea083">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"0":[31,18,17,19,18,13,28],"1":[5,0,1,0,0,0,0]},"columns":[{"id":".rownames","name":"Day of the Week","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"0","name":"No Holiday","type":"numeric"},{"id":"1","name":"Holiday","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"af7f7cd3ef2fe65896f85c7b9701ba78"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -383,6 +383,7 @@ window.Quarto = {
 <span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>R_squared <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (SSE<span class="sc">/</span>SST)</span>
 <span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>R_adj <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span>(<span class="dv">1</span><span class="sc">-</span>R_squared)<span class="sc">*</span>((n<span class="dv">-1</span>)<span class="sc">/</span>(n<span class="sc">-</span>k))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<hr>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -474,47 +475,109 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a multiple linear regression including all explanatory variables. Include an interaction term between outside_temperature and humidity.</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(consumption_kwh <span class="sc">~</span> </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            outside_temperature <span class="sc">+</span> humidity <span class="sc">+</span> wind_speed <span class="sc">+</span> household_size <span class="sc">+</span> appliance_index <span class="sc">+</span> energy_efficiency <span class="sc">+</span> solar_installed <span class="sc">+</span> day_of_week <span class="sc">+</span> holiday <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            outside_temperature<span class="sc">:</span>humidity, </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> data)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct and display a table of coefficients with 95% confidence intervals and p-values.</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>confint_fit <span class="ot">&lt;-</span> <span class="fu">confint</span>(fit, <span class="at">level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>fit_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>table_coefficients <span class="ot">&lt;-</span> fit_summary<span class="sc">$</span>coefficients</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>table_final <span class="ot">&lt;-</span> <span class="fu">cbind</span>(table_coefficients[,</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>( <span class="st">"Pr(&gt;|t|)"</span>)], confint_fit)</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(table_final) <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">"p-value"</span>, <span class="st">"CI: 0.975"</span>, <span class="st">"CI: 0.025"</span>)</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(table_final, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            outside_temperature <span class="sc">+</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            humidity <span class="sc">+</span> wind_speed <span class="sc">+</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            household_size <span class="sc">+</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            appliance_index <span class="sc">+</span> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            energy_efficiency <span class="sc">+</span> </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            solar_installed <span class="sc">+</span> </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>            day_of_week <span class="sc">+</span> holiday <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            outside_temperature<span class="sc">:</span>humidity, </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> data)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct and display a table of coefficients with 95% confidence intervals and p-values.</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>confint_fit <span class="ot">&lt;-</span> <span class="fu">confint</span>(fit, <span class="at">level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>fit_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>table_coefficients <span class="ot">&lt;-</span> fit_summary<span class="sc">$</span>coefficients</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>table_final <span class="ot">&lt;-</span> <span class="fu">cbind</span>(table_coefficients[,</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>( <span class="st">"Pr(&gt;|t|)"</span>)], confint_fit)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(table_final) <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">"p-value"</span>, <span class="st">"CI:97.5%"</span>, <span class="st">"CI:2.5%"</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(table_final, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                             p-value CI: 0.975 CI: 0.025
-(Intercept)                  2.7e-04     7.206   23.3221
-outside_temperature          2.7e-01    -0.193    0.6765
-humidity                     8.9e-01    -0.129    0.1489
-wind_speed                   3.1e-01    -0.131    0.4130
-household_size               3.3e-09     0.718    1.3691
-appliance_index              5.0e-01    -0.021    0.0421
-energy_efficiencyExcellent   1.4e-01    -2.574    0.3671
-energy_efficiencyGood        4.4e-01    -1.473    0.6429
-energy_efficiencyPoor        1.2e-01    -2.180    0.2610
-solar_installedYes           4.8e-62   -14.626  -12.8579
-day_of_weekMonday            8.5e-03     0.548    3.6753
-day_of_weekSaturday          4.7e-02     0.025    3.9513
-day_of_weekSunday            1.2e-01    -0.324    2.9237
-day_of_weekThursday          8.0e-01    -1.555    2.0026
-day_of_weekTuesday           6.3e-01    -1.323    2.1687
-day_of_weekWednesday         3.8e-01    -0.968    2.5448
-holiday                      8.2e-01    -2.549    2.0340
-outside_temperature:humidity 4.4e-01    -0.010    0.0044</code></pre>
+<pre><code>                              p-value  CI:97.5%  CI:2.5%
+(Intercept)                  2.66e-04   7.20636  23.3221
+outside_temperature          2.73e-01  -0.19282   0.6765
+humidity                     8.89e-01  -0.12931   0.1489
+wind_speed                   3.07e-01  -0.13100   0.4130
+household_size               3.35e-09   0.71806   1.3691
+appliance_index              5.05e-01  -0.02082   0.0421
+energy_efficiencyExcellent   1.40e-01  -2.57439   0.3671
+energy_efficiencyGood        4.39e-01  -1.47262   0.6429
+energy_efficiencyPoor        1.22e-01  -2.17992   0.2610
+solar_installedYes           4.84e-62 -14.62588 -12.8579
+day_of_weekMonday            8.49e-03   0.54839   3.6753
+day_of_weekSaturday          4.72e-02   0.02525   3.9513
+day_of_weekSunday            1.16e-01  -0.32353   2.9237
+day_of_weekThursday          8.04e-01  -1.55537   2.0026
+day_of_weekTuesday           6.33e-01  -1.32273   2.1687
+day_of_weekWednesday         3.76e-01  -0.96817   2.5448
+holiday                      8.25e-01  -2.54857   2.0340
+outside_temperature:humidity 4.44e-01  -0.00998   0.0044</code></pre>
 </div>
 </div>
 </section>
 <section id="hypothesis-testing" class="level4">
 <h4 class="anchored" data-anchor-id="hypothesis-testing">Hypothesis Testing:</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test whether the following significantly affect consumption_kwh</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Outside Temperature</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>fit_no_temp <span class="ot">&lt;-</span> <span class="fu">lm</span>(consumption_kwh <span class="sc">~</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                   humidity <span class="sc">+</span> </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                   wind_speed <span class="sc">+</span> </span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                   household_size <span class="sc">+</span> </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                   appliance_index <span class="sc">+</span> </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                   energy_efficiency <span class="sc">+</span> </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                   solar_installed <span class="sc">+</span> </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                   day_of_week <span class="sc">+</span> holiday,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> data)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>anova_temp <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit_no_temp, fit)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_temp)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Humidity </span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>fit_no_humidity <span class="ot">&lt;-</span> <span class="fu">lm</span>(consumption_kwh <span class="sc">~</span> </span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>            outside_temperature <span class="sc">+</span> </span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>            wind_speed <span class="sc">+</span> </span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>            household_size <span class="sc">+</span> </span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>            appliance_index <span class="sc">+</span> </span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>            energy_efficiency <span class="sc">+</span> </span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>            solar_installed <span class="sc">+</span> </span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>            day_of_week <span class="sc">+</span> holiday,</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> data)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>anova_humidity <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit_no_humidity, fit)</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_humidity)</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Solar Installed</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>fit_no_solar <span class="ot">&lt;-</span> <span class="fu">lm</span>(consumption_kwh <span class="sc">~</span> </span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>            outside_temperature <span class="sc">+</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>            energy_efficiency <span class="sc">+</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>            humidity <span class="sc">+</span> </span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>            wind_speed <span class="sc">+</span> </span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>            household_size <span class="sc">+</span> </span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>            appliance_index <span class="sc">+</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>            day_of_week <span class="sc">+</span> holiday,</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> data)</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>anova_solar <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit_no_solar, fit)</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_solar)</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><span class="math display">\[H_{0}: \beta_{temperature} = \beta_{temp:humidity} = 0\]</span></p>
+<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{temperature}, \beta_{temp:humidity}) \neq 0\]</span> <span class="math display">\[F_{stat} =  1.002 \]</span> <span class="math display">\[p_{value} =  0.3698  &gt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we fail to reject } H_{0}.\]</span><span class="math display">\[\text{Because there is no significant overall effect of outside temperature} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &gt; 0.05).\]</span> ———————————————————————————————————————— <span class="math display">\[H_{0}: \beta_{humidity} = \beta_{temp:humidity} = 0\]</span></p>
+<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{humidity}, \beta_{temp:humidity}) \neq 0\]</span> <span class="math display">\[F_{stat} =  2.218 \]</span> <span class="math display">\[p_{value} =  0.1129  &gt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we fail to reject } H_{0}.\]</span><span class="math display">\[\text{Because there is no significant overall effect of humidity} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &gt; 0.05).\]</span> ———————————————————————————————————————— <span class="math display">\[H_{0}: \beta_{solar} = \beta_{no solar} = 0\]</span></p>
+<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{solar}, \beta_{no solar}) \neq 0\]</span> <span class="math display">\[F_{stat} =  476.838 \]</span> <span class="math display">\[p_{value} =  3.996357e-61  &lt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we reject } H_{0} \text{ in favor of } H_{1}.\]</span><span class="math display">\[\text{Because there is a significant overall effect of solar usage} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &lt; 0.05).\]</span></p>
+<hr>
 </section>
 <section id="interpretation" class="level4">
 <h4 class="anchored" data-anchor-id="interpretation">Interpretation:</h4>
