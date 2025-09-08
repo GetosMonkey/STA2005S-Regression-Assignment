@@ -693,11 +693,13 @@ for ( i in seq_along(B1_sim_A)){
         Y_A <- B0_sim + B1_A * x_vec + E_A
         
         fit_A <- lm(Y_A ~ x_vec)
-        p_val_A <- summary(fit)$coefficients[2, 4]
+        p_val_A <- summary(fit_A)$coefficients[2, 4]
         
         if (p_val_A < 0.05){ rejections_A = rejections_A +1 }
         
-      } } 
+      }
+      results_A$power[i] <- rejections_A/n_sim
+      } 
 ```
 
 ```{r}
