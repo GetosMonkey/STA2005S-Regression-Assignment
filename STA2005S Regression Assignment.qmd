@@ -865,5 +865,23 @@ From the graphs and the tabulated results there is a clear monotonic increasing 
 ### Conclusion & design insight:
 
 
+**In Scenario A:**
+
+Estimated power increases as effect size increases for a fixed sample size, $n = 25$. This means there is a clear monotonic, increasing relationship between the effect size ($\beta1_{A}$) and estimated statistical power. From the results of scenario B, this sample size $n = 25$ is sufficiently large for us to ignore the effects of sample size on estimated power (At $n$ = 20: $(1-\beta)_{linear}$ = 90.1%, $(1-\beta)_{exponential}$ = 99.5% ). This implies that effect size is very influential on the power of a test. 
+
+**In Scenario B:**
+
+Estimated power increases as sample size increases in both linear an exponential models for a fixed effect size, $\beta_{1} = 0.01$. This means there is a clear monotonic increasing relationship between the sample size $n$ and the estimated statistical power, but since effect size is fixed we can't evaluate its influence in this scenario. Both the mis-specified linear model and exponential model follow a concave growth pattern reaching $(1-\beta) = 1$ however the exponential model consistently outperforms the linear model for all $n$.
+
+**Lowest power yield: **
+
+Scenario A yields the lowest overall power, specifically for small effect sizes ($\beta_{1}$ = 0.5 $\implies (1-\beta)$ = 4.5%).
+
+This is because with a fixed moderate sample size $n$ = 25, very small effect sizes are difficult to detect resulting in a low estimated power and high risk of Type 2 errors in testing.In contrast, Scenario B can achieve higher power by increasing $n$, even for small effect sizes on top of considering the differences between the linear and exponential models (At $n$ = 5 and $\beta_{1} = 0.01$ : $(1-\beta)_{linear}$ = 17.4%, $(1-\beta)_{exponential}$ = 69.8% .
+
+**Design decisions:**
+
+The simulations usefully demonstrate that estimated power increases with both effect size ($\beta_{1}$) and sample size ($n$). On top of this using the correctly specified model greatly improves the power of our tests. This shows that understanding the underlying relationship between our predictor and response variables is fundamental to upholding linear regression assumptions.
+
 
 ---
