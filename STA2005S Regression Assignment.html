@@ -332,8 +332,8 @@ window.Quarto = {
 <h6 class="anchored" data-anchor-id="energy-efficiency-vs-solar-usage-table">Energy Efficiency vs Solar Usage Table:</h6>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-b180cfbd94f57a8f6383" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b180cfbd94f57a8f6383">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Poor","Average","Good","Excellent"],"Yes":[12,31,24,9],"No":[16,28,22,8]},"columns":[{"id":".rownames","name":"Energy Efficiency","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"Yes","name":"Solar use","type":"numeric"},{"id":"No","name":"No Solar","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"f62a3d31c1458f5e45b4eaed5cb757f9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-4f4f57f5b5c87455568d" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4f4f57f5b5c87455568d">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Poor","Average","Good","Excellent"],"Yes":[12,31,24,9],"No":[16,28,22,8]},"columns":[{"id":".rownames","name":"Energy Efficiency","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"Yes","name":"Solar use","type":"numeric"},{"id":"No","name":"No Solar","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"f62a3d31c1458f5e45b4eaed5cb757f9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -342,8 +342,8 @@ window.Quarto = {
 <h6 class="anchored" data-anchor-id="weekdays-vs-holidays-table">Weekdays vs Holidays Table:</h6>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-16ccecd202ae308764f5" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-16ccecd202ae308764f5">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"0":[31,18,17,19,18,13,28],"1":[5,0,1,0,0,0,0]},"columns":[{"id":".rownames","name":"Day of the Week","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"0","name":"No Holiday","type":"numeric"},{"id":"1","name":"Holiday","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"af7f7cd3ef2fe65896f85c7b9701ba78"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-e9682c9da46add1da760" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e9682c9da46add1da760">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"0":[31,18,17,19,18,13,28],"1":[5,0,1,0,0,0,0]},"columns":[{"id":".rownames","name":"Day of the Week","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"0","name":"No Holiday","type":"numeric"},{"id":"1","name":"Holiday","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"af7f7cd3ef2fe65896f85c7b9701ba78"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -614,29 +614,75 @@ outside_temperature:humidity 4.44e-01  -0.00998   0.0044</code></pre>
 <span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>anova_solar <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit_no_solar, fit)</span>
 <span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_solar)</span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="co"># day of the week</span></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>fit_no_day <span class="ot">&lt;-</span> <span class="fu">lm</span>(consumption_kwh <span class="sc">~</span> </span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>            outside_temperature <span class="sc">+</span></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>            energy_efficiency <span class="sc">+</span></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>            solar_installed <span class="sc">+</span></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>            humidity <span class="sc">+</span> </span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>            wind_speed <span class="sc">+</span> </span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>            household_size <span class="sc">+</span> </span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>            appliance_index <span class="sc">+</span></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>            holiday,</span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> data)</span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>anova_day <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit_no_day, fit)</span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_day)</span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
-<p><span class="math display">\[H_{0}: \beta_{temperature} = \beta_{temp:humidity} = 0\]</span></p>
-<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{temperature}, \beta_{temp:humidity}) \neq 0\]</span> <span class="math display">\[F_{stat} =  1.002 \]</span> <span class="math display">\[p_{value} =  0.3698  &gt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we fail to reject } H_{0}.\]</span><span class="math display">\[\text{Because there is no significant overall effect of outside temperature} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &gt; 0.05).\]</span> ———————————————————————————————————————— <span class="math display">\[H_{0}: \beta_{humidity} = \beta_{temp:humidity} = 0\]</span></p>
-<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{humidity}, \beta_{temp:humidity}) \neq 0\]</span> <span class="math display">\[F_{stat} =  2.218 \]</span> <span class="math display">\[p_{value} =  0.1129  &gt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we fail to reject } H_{0}.\]</span><span class="math display">\[\text{Because there is no significant overall effect of humidity} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &gt; 0.05).\]</span> ———————————————————————————————————————— <span class="math display">\[H_{0}: \beta_{solar} = \beta_{no solar} = 0\]</span></p>
-<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{solar}, \beta_{no solar}) \neq 0\]</span> <span class="math display">\[F_{stat} =  476.838 \]</span> <span class="math display">\[p_{value} =  3.996357e-61  &lt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we reject } H_{0} \text{ in favor of } H_{1}.\]</span><span class="math display">\[\text{Because there is a significant overall effect of solar usage} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &lt; 0.05).\]</span></p>
+<p>Hypothesis test: Effect of Outside Temperature<span class="math display">\[H_{0}: \beta_{temperature} = \beta_{temp:humidity} = 0\]</span></p>
+<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{temperature}, \beta_{temp:humidity}) \neq 0\]</span> <span class="math display">\[F_{stat} =  1.002 \]</span> <span class="math display">\[p_{value} =  0.3698  &gt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we fail to reject } H_{0}.\]</span><span class="math display">\[\text{Because there is no significant overall effect of outside temperature} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &gt; 0.05).\]</span> ———————————————————————————————————————— Hypothesis test: Effect of Humidity<span class="math display">\[H_{0}: \beta_{humidity} = \beta_{temp:humidity} = 0\]</span></p>
+<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{humidity}, \beta_{temp:humidity}) \neq 0\]</span> <span class="math display">\[F_{stat} =  2.218 \]</span> <span class="math display">\[p_{value} =  0.1129  &gt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we fail to reject } H_{0}.\]</span><span class="math display">\[\text{Because there is no significant overall effect of humidity} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &gt; 0.05).\]</span> ———————————————————————————————————————— Hypothesis test: Effect of Solar Usage<span class="math display">\[H_{0}: \beta_{solar} = \beta_{no solar} = 0\]</span></p>
+<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{solar}, \beta_{no solar}) \neq 0\]</span> <span class="math display">\[F_{stat} =  476.838 \]</span> <span class="math display">\[p_{value} =  3.996357e-61  &lt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we reject } H_{0} \text{ in favor of } H_{1}.\]</span><span class="math display">\[\text{Because there is a significant overall effect of solar usage} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &lt; 0.05).\]</span> ———————————————————————————————————————— Hypothesis test: Effect of Day of the Week<span class="math display">\[H_{0}: \beta_{Mon} = \beta_{Tue} = \beta_{Wed} = \beta_{Thu} = \beta_{Fri} = \beta_{Sat} = \beta_{Sun} = 0\]</span></p>
+<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{Mon}, \beta_{Tue}, \beta_{Wed}, \beta_{Thu}, \beta_{Fri}, \beta_{Sat}, \beta_{Sun}) \neq 0\]</span> <span class="math display">\[F_{stat} =  1.798 \]</span> <span class="math display">\[p_{value} =  0.09282003  &gt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we fail to reject } H_{0}.\]</span><span class="math display">\[\text{Because there is no significant overall effect of the day of the week} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &gt; 0.05).\]</span></p>
 <hr>
 </section>
 <section id="interpretation" class="level4">
 <h4 class="anchored" data-anchor-id="interpretation">Interpretation:</h4>
+<p>At the <span class="math inline">\(\alpha = 0.05\)</span> significance level:</p>
+<p><strong>confidence intervals &amp; Effect Sizes: </strong></p>
+<p>Predictor variables associated with effect estimates, <span class="math inline">\(\hat{\beta_{i}}\)</span>, whose confidence intervals contain 0 are considered statistically insignificant, and do not heavily influence household electricity consumption. These factors include (outside_temperature, humidity, wind_speed, appliance_index, energy_efficiency (all levels), days of the week (other than Monday and Saturday), and holidays )</p>
+<p>None of the CI’s associated with the following factors include 0:</p>
+<ol type="1">
+<li>household size: [0.72, 1.34] <span class="math inline">\(\implies\)</span> household size has a statistically significant influence on electricity consumption. This positive effect however is fairly weak since it can maximally show a 1.34 units increase in consumption (kWh) per unit increase in household size.</li>
+<li>solar installed (yes): [-14.63, -12.85] <span class="math inline">\(\implies\)</span> solar usage has a very statistically significant influence on electricity consumption. This negative effect however is very strong since it can maximally show a 14.63 units decrease in consumption (kWh) from having solar power installed compared to not.</li>
+<li>Monday: [0.54, 3.68] <span class="math inline">\(\implies\)</span> Mondays have a statistically significant influence on electricity consumption. This positive effect however is fairly weak, but less week than household size, since it can maximally show a 3.68 units increase in consumption (kWh) per level change to Monday.</li>
+<li>Saturday: [0.02, 3.95] <span class="math inline">\(\implies\)</span> Saturdays have a statistically significant influence on electricity consumption.This positive effect however is fairly weak, but less week than household size, since it can maximally show a 3.95 units increase in consumption (kWh) per level change to Saturday.</li>
+</ol>
+<p><strong>P-value: </strong></p>
+<p>All the factors that our confidence intervals found to be statistically insignificant are reinforced as statistically insignificant by their p-values as: <span class="math inline">\(p_{i} &gt; 0.05\)</span>, <span class="math inline">\(\forall i \in\)</span> (outside_temperature, humidity, wind_speed, appliance_index, energy_efficiency (all levels), days of the week (other than Monday and Saturday), and holidays)</p>
+<ol type="1">
+<li>household size: <span class="math inline">\(p \approx 0 &lt; 0.05 \implies\)</span> household size has a statistically significant influence on electricity consumption</li>
+<li>solar installed (yes): <span class="math inline">\(p \approx 0 &lt; 0.05 \implies\)</span> solar usage has a very statistically significant influence on electricity consumption</li>
+<li>Monday: <span class="math inline">\(p \approx 0.009 &lt; 0.05 \implies\)</span> Mondays have a statistically significant influence on electricity consumption. This is likely due to the fact that so many holidays fell on a Monday, despite holiday status being statistically insignificant otherwise.</li>
+<li>Saturday: <span class="math inline">\(p \approx 0.047 &lt; 0.05 \implies\)</span> Saturdays have a statistically significant influence on electricity consumption</li>
+</ol>
+<p><strong>NB: </strong> Our overall test for the effect of day_of_week concluded that they day of the week was statistically insignificant so the outlying effects of Monday and Saturday should be interpreted with caution.</p>
 </section>
 </section>
 <section id="section-5-conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="section-5-conclusion">Section 5: Conclusion</h3>
 <section id="summary" class="level4">
 <h4 class="anchored" data-anchor-id="summary">Summary:</h4>
+<p>The multiple regression analysis finds that household electricity consumption is primarily driven by household characteristics rather than environmental influences or time factors as hypothesized. Surprisingly however, solar installation emerges as the most dominant predictor variable of household electricity consumption by far, whilst the effects of energy efficiency are statistically insignificant and the influence of household size is minimal.</p>
+<p>Solar installation reduces daily household electricity consumption by <span class="math inline">\(\approx 13.74\)</span> kWh compared to non-solar homes. Considering that the mean electricity consumption of non-solar homes <span class="math inline">\(\approx 22\)</span> kWh (from our previous density plots) this implies a <span class="math inline">\(\approx 60\)</span> decrease in electricity usage for homes with solar installed.</p>
+<p>Household size shows an expected positive relationship with each additional resident on average contributing to a <span class="math inline">\(\approx 1.03\)</span> kWh increase in household electricity consumption. Despite evidence of specific days influencing electricity consumption, the effects are not significant overall, suggesting consistent consumption patterns throughout the week otherwise.</p>
+<p>Outside temperature, humidity, wind speed, appliance index, energy efficiency (all levels), and holidays have a statistically insignificant effect on consumption.</p>
 </section>
 <section id="recommendations" class="level4">
 <h4 class="anchored" data-anchor-id="recommendations">Recommendations:</h4>
+<p>For demand-side management and efficiency policy we recommend:</p>
+<p><strong>1) Prioritizing solar installation: </strong> Solar installation and usage is by far the most deterministic predictor of electricity consumption and prioritizing it’s widespread use is vital to lowering the average household electrical consumption and expenditure in Cape Town. This could include investing into reusable energy research and development or enforcing solar usage mandates particularly for larger households which can afford to do so. Incentives such as lower rates or benefits could also be offered to promote the use of solar power and solar installation.</p>
+<p><strong>2) Rehashing the energy efficiency rating system: </strong> Unexpectedly, the energy efficiency rating of a household had no statistically significant effect on the household’s actual electricity consumption. This suggests that the current efficiency rating systems do not correlate to real-world usage patterns and should be revisited and updated to better reflect consumption.</p>
 </section>
 <section id="future-research" class="level4">
 <h4 class="anchored" data-anchor-id="future-research">Future Research:</h4>
+<p>Future studies should investigate socioeconomic factors influencing energy consumption, as solar installation is costly and the effect of solar power on electricity consumption may in reality reflect an underlying wealth disparity, especially in South Africa where inequality is ingrained.</p>
+<p>It is also worthwhile investigating the comparative effects of other renewable energy technologies against household electricity consumption patterns alongside solar technology (eg: wind, or battery power). Additionally research should be done on optimal solar configurations for different house types and areas so that we can optimize the integration of solar power into our households.</p>
 <hr>
 </section>
 </section>
@@ -773,14 +819,14 @@ outside_temperature:humidity 4.44e-01  -0.00998   0.0044</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-24-1.gif" class="img-fluid figure-img"></p>
+<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-20-1.gif" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-24-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="STA2005S-Regression-Assignment_files/figure-html/unnamed-chunk-20-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -806,7 +852,8 @@ outside_temperature:humidity 4.44e-01  -0.00998   0.0044</code></pre>
 <p><strong>Lowest power yield: </strong></p>
 <p>Scenario A yields the lowest overall power, specifically for small effect sizes (<span class="math inline">\(\beta_{1}\)</span> = 0.5 <span class="math inline">\(\implies (1-\beta)\)</span> = 4.5%).</p>
 <p>This is because with a fixed moderate sample size <span class="math inline">\(n\)</span> = 25, very small effect sizes are difficult to detect resulting in a low estimated power and high risk of Type 2 errors in testing.In contrast, Scenario B can achieve higher power by increasing <span class="math inline">\(n\)</span>, even for small effect sizes on top of considering the differences between the linear and exponential models (At <span class="math inline">\(n\)</span> = 5 and <span class="math inline">\(\beta_{1} = 0.01\)</span> : <span class="math inline">\((1-\beta)_{linear}\)</span> = 17.4%, <span class="math inline">\((1-\beta)_{exponential}\)</span> = 69.8% .</p>
-<p><strong>Design decisions:</strong> The simulations usefully demonstrate that estimated power increases with both effect size (<span class="math inline">\(\beta_{1}\)</span>) and sample size (<span class="math inline">\(n\)</span>). On top of this using the correctly specified model greatly improves the power of our tests. This shows that understanding the underlying relationship between our predictor and response variables is fundamental to upholding linear regression assumptions.</p>
+<p><strong>Design decisions:</strong></p>
+<p>The simulations usefully demonstrate that estimated power increases with both effect size (<span class="math inline">\(\beta_{1}\)</span>) and sample size (<span class="math inline">\(n\)</span>). On top of this using the correctly specified model greatly improves the power of our tests. This shows that understanding the underlying relationship between our predictor and response variables is fundamental to upholding linear regression assumptions.</p>
 <hr>
 </section>
 </section>
