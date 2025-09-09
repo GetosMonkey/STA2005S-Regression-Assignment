@@ -134,7 +134,8 @@ curve(dnorm(x, mean = mean_kwh, sd = sd_kwh),
       )
 
 ```
-###### Shape: 
+
+###### Shape:
 
 The underlying distribution of consumption (kWh) is bimodal with two clear peaks around 7 and 22 kWh. It is fairly symmetric about these two peaks and does not display a wide spread/range. Because of the bimodality, the overlaid normal density does not align well with the data implying that the underlying overall distribution is not normal.
 
@@ -173,7 +174,8 @@ ggplot(data, aes(x = consumption_kwh, fill = solar_installed)) +
   theme_minimal()
   
 ```
-###### Shape: 
+
+###### Shape:
 
 When stratified by solar installation status, the electricity consumption distributions for households with and without solar installed closely match their respective overlaid normal densities. This implies that within these groups the observations are approximately normally distributed and reinforces the bimodality we found in the unstratified case.This implies that solar installation status has a major influence on household electricity consumption.
 
@@ -327,21 +329,21 @@ reactable(days_holidays,
 
 **Observed Relationships:**
 
-- From our density plots their is a clear difference in electricity consumption distributions between households with solar installation and without. This is the most prominent relationship - households with solar installed show lower average electricity consumption than households without.
+-   From our density plots their is a clear difference in electricity consumption distributions between households with solar installation and without. This is the most prominent relationship - households with solar installed show lower average electricity consumption than households without.
 
-- From our Pairwise scatterplot there is a positive linear relationship between household size and electricity consumption, stratified by household use of solar power as seen below:
+-   From our Pairwise scatterplot there is a positive linear relationship between household size and electricity consumption, stratified by household use of solar power as seen below:
 
 ::: {#fig-scatterplot .figure}
-![](scatterplot.png){width=150px}
+![](scatterplot.png){width="150px"}
 
 Scatterplot of Electricity Consumption by Household Size
 :::
 
-- From our boxplots the mean consumption of electricity on a weekday is lower than the mean consumption of electricity during the weekend.
+-   From our boxplots the mean consumption of electricity on a weekday is lower than the mean consumption of electricity during the weekend.
 
-- From our boxplots, energy efficiency ratings have little effect on mean household electricity consumption unless the efficiency rating is "Poor". Poorly rated households experience higher average electricity consumption.
+-   From our boxplots, energy efficiency ratings have little effect on mean household electricity consumption unless the efficiency rating is "Poor". Poorly rated households experience higher average electricity consumption.
 
-- From our pairwise scatterplots there appears to be very weak relationships between environmental factors and household electricity consumption. 
+-   From our pairwise scatterplots there appears to be very weak relationships between environmental factors and household electricity consumption.
 
 **Potential Collinearity:**
 
@@ -551,6 +553,7 @@ table_final <- cbind(table_coefficients[,
                c( "Pr(>|t|)")], confint_fit)
 colnames(table_final) <- c( "p-value", "CI:97.5%", "CI:2.5%")
 
+cat("\nRegression Coefficients with 95% Confidence Intervals and p-values\n")
 print(table_final, digits = 3)
 
 ```
@@ -651,7 +654,7 @@ cat("$$\\text{on energy consumption } (p_{value} > 0.05).$$\n")
 cat("------------------------------------------------------------------------————————————————\n")
 
 # Displaying results: Humidity
-cat("Hypothesis test: Effect of Humidity")
+cat("\nHypothesis test: Effect of Humidity")
 
 cat("$$H_{0}: \\beta_{humidity} = \\beta_{temp:humidity} = 0$$\n\n")
 
@@ -668,7 +671,7 @@ cat("$$\\text{on energy consumption } (p_{value} > 0.05).$$\n")
 cat("------------------------------------------------------------------------————————————————\n")
 
 # Displaying results: Solar Installed
-cat("Hypothesis test: Effect of Solar Usage")
+cat("\nHypothesis test: Effect of Solar Usage")
 
 cat("$$H_{0}: \\beta_{solar} = \\beta_{no solar} = 0$$\n\n")
 
@@ -685,7 +688,7 @@ cat("$$\\text{on energy consumption } (p_{value} < 0.05).$$\n")
 cat("------------------------------------------------------------------------————————————————\n")
 
 # Displaying results: Day of the Week
-cat("Hypothesis test: Effect of Day of the Week")
+cat("\nHypothesis test: Effect of Day of the Week")
 
 cat("$$H_{0}: \\beta_{Mon} = \\beta_{Tue} = \\beta_{Wed} = \\beta_{Thu} = \\beta_{Fri} = \\beta_{Sat} = \\beta_{Sun} = 0$$\n\n")
 
@@ -705,30 +708,29 @@ cat("$$\\text{on energy consumption } (p_{value} > 0.05).$$\n")
 
 #### Interpretation:
 
-At the $\alpha = 0.05$ significance level: 
+At the $\alpha = 0.05$ significance level:
 
-**confidence intervals & Effect Sizes: **
+**confidence intervals & Effect Sizes:**
 
 Predictor variables associated with effect estimates, $\hat{\beta_{i}}$, whose confidence intervals contain 0 are considered statistically insignificant, and do not heavily influence household electricity consumption. These factors include (outside_temperature, humidity, wind_speed, appliance_index, energy_efficiency (all levels), days of the week (other than Monday and Saturday), and holidays )
 
-None of the CI's associated with the following factors include 0: 
+None of the CI's associated with the following factors include 0:
 
-1) household size: [0.72, 1.34] $\implies$ household size has a statistically significant influence on electricity consumption. This positive effect however is fairly weak since it can maximally show a 1.34 units increase in consumption (kWh) per unit increase in household size.
-2) solar installed (yes): [-14.63, -12.85] $\implies$ solar usage has a very statistically significant influence on electricity consumption. This negative effect however is very strong since it can maximally show a 14.63 units decrease in consumption (kWh) from having solar power installed compared to not.
-3) Monday: [0.54, 3.68] $\implies$ Mondays have a statistically significant influence on electricity consumption. This positive effect however is fairly weak, but less week than household size, since it can maximally show a 3.68 units increase in consumption (kWh) per level change to Monday.
-4) Saturday: [0.02, 3.95] $\implies$ Saturdays have a statistically significant influence on electricity consumption.This positive effect however is fairly weak, but less week than household size, since it can maximally show a 3.95 units increase in consumption (kWh) per level change to Saturday.
+1)  household size: \[0.72, 1.34\] $\implies$ household size has a statistically significant influence on electricity consumption. This positive effect however is fairly weak since it can maximally show a 1.34 units increase in consumption (kWh) per unit increase in household size.
+2)  solar installed (yes): \[-14.63, -12.85\] $\implies$ solar usage has a very statistically significant influence on electricity consumption. This negative effect however is very strong since it can maximally show a 14.63 units decrease in consumption (kWh) from having solar power installed compared to not.
+3)  Monday: \[0.54, 3.68\] $\implies$ Mondays have a statistically significant influence on electricity consumption. This positive effect however is fairly weak, but less week than household size, since it can maximally show a 3.68 units increase in consumption (kWh) per level change to Monday.
+4)  Saturday: \[0.02, 3.95\] $\implies$ Saturdays have a statistically significant influence on electricity consumption.This positive effect however is fairly weak, but less week than household size, since it can maximally show a 3.95 units increase in consumption (kWh) per level change to Saturday.
 
-
-**P-value: **
+**P-value:**
 
 All the factors that our confidence intervals found to be statistically insignificant are reinforced as statistically insignificant by their p-values as: $p_{i} > 0.05$, $\forall i \in$ (outside_temperature, humidity, wind_speed, appliance_index, energy_efficiency (all levels), days of the week (other than Monday and Saturday), and holidays)
 
-1) household size: $p \approx 0 < 0.05 \implies$ household size has a statistically significant influence on electricity consumption
-2) solar installed (yes): $p \approx 0 < 0.05 \implies$ solar usage has a very statistically significant influence on electricity consumption
-3) Monday: $p \approx 0.009 < 0.05 \implies$ Mondays have a statistically significant influence on electricity consumption. This is likely due to the fact that so many holidays fell on a Monday, despite holiday status being statistically insignificant otherwise.
-4) Saturday: $p \approx 0.047 < 0.05 \implies$ Saturdays have a statistically significant influence on electricity consumption
+1)  household size: $p \approx 0 < 0.05 \implies$ household size has a statistically significant influence on electricity consumption
+2)  solar installed (yes): $p \approx 0 < 0.05 \implies$ solar usage has a very statistically significant influence on electricity consumption
+3)  Monday: $p \approx 0.009 < 0.05 \implies$ Mondays have a statistically significant influence on electricity consumption. This is likely due to the fact that so many holidays fell on a Monday, despite holiday status being statistically insignificant otherwise.
+4)  Saturday: $p \approx 0.047 < 0.05 \implies$ Saturdays have a statistically significant influence on electricity consumption
 
-**NB: ** Our overall test for the effect of day_of_week concluded that they day of the week was statistically insignificant so the outlying effects of Monday and Saturday should be interpreted with caution.
+**NB:** Our overall test for the effect of day_of_week concluded that they day of the week was statistically insignificant so the outlying effects of Monday and Saturday should be interpreted with caution.
 
 ### Section 5: Conclusion
 
@@ -744,15 +746,15 @@ Outside temperature, humidity, wind speed, appliance index, energy efficiency (a
 
 #### Recommendations:
 
-For demand-side management and efficiency policy we recommend: 
+For demand-side management and efficiency policy we recommend:
 
-**1) Prioritizing solar installation: ** Solar installation and usage is by far the most deterministic predictor of electricity consumption and prioritizing it's widespread use is vital to lowering the average household electrical consumption and expenditure in Cape Town. This could include investing into reusable energy research and development or enforcing solar usage mandates particularly for larger households which can afford to do so. Incentives such as lower rates or benefits could also be offered to promote the use of solar power and solar installation.
+**1) Prioritizing solar installation:** Solar installation and usage is by far the most deterministic predictor of electricity consumption and prioritizing it's widespread use is vital to lowering the average household electrical consumption and expenditure in Cape Town. This could include investing into reusable energy research and development or enforcing solar usage mandates particularly for larger households which can afford to do so. Incentives such as lower rates or benefits could also be offered to promote the use of solar power and solar installation.
 
-**2) Rehashing the energy efficiency rating system: ** Unexpectedly, the energy efficiency rating of a household had no statistically significant effect on the household's actual electricity consumption. This suggests that the current efficiency rating systems do not correlate to real-world usage patterns and should be revisited and updated to better reflect consumption.
+**2) Rehashing the energy efficiency rating system:** Unexpectedly, the energy efficiency rating of a household had no statistically significant effect on the household's actual electricity consumption. This suggests that the current efficiency rating systems do not correlate to real-world usage patterns and should be revisited and updated to better reflect consumption.
 
 #### Future Research:
 
-Future studies should investigate socioeconomic factors influencing energy consumption, as solar installation is costly and the effect of solar power on electricity consumption may in reality reflect an underlying wealth disparity, especially in South Africa where inequality is ingrained. 
+Future studies should investigate socioeconomic factors influencing energy consumption, as solar installation is costly and the effect of solar power on electricity consumption may in reality reflect an underlying wealth disparity, especially in South Africa where inequality is ingrained.
 
 It is also worthwhile investigating the comparative effects of other renewable energy technologies against household electricity consumption patterns alongside solar technology (eg: wind, or battery power). Additionally research should be done on optimal solar configurations for different house types and areas so that we can optimize the integration of solar power into our households.
 
@@ -809,6 +811,7 @@ for ( i in seq_along(B1_sim_A)){
 #| echo: false
 
 #Tabulate results: 
+cat("\nTabulated Results of Estimated power across Effect sizes\n")
 
 kable(
   results_A, 
@@ -823,12 +826,11 @@ From the tabulated results there is a clear monotonic, increasing relationship b
 
 **Notably:**
 
-1) There is a low estimated statistical power at small effect sizes. At $\beta_{1}$ = 0.5, the estimated power is incredibly small at 4.5% which indicates a very high risk of a Type 2 error when test for small effect sizes.
+1)  There is a low estimated statistical power at small effect sizes. At $\beta_{1}$ = 0.5, the estimated power is incredibly small at 4.5% which indicates a very high risk of a Type 2 error when test for small effect sizes.
 
-2) There is a high estimated statistical power at large effect sizes.At $\beta_{1}$ = 5, the estimated power of the test is 77.7% and reaches 100% at $\beta_{1}$ = 10, indicating a very low risk of a Type 2 error when testing for large effect sizes
+2)  There is a high estimated statistical power at large effect sizes.At $\beta_{1}$ = 5, the estimated power of the test is 77.7% and reaches 100% at $\beta_{1}$ = 10, indicating a very low risk of a Type 2 error when testing for large effect sizes
 
-3) Changes in the generative seed used changes the power results but not the overall observed trend.
-
+3)  Changes in the generative seed used changes the power results but not the overall observed trend.
 
 ------------------------------------------------------------------------
 
@@ -882,6 +884,7 @@ for (size in seq_along(sample_sizes)){
 #| warning: false
 
 # Table results
+cat("\nTabulated Results of Estimated power across Sample size \n")
 print(results_B)
 
 # Base graph
@@ -918,26 +921,25 @@ From the graphs and the tabulated results there is a clear monotonic increasing 
 
 **Notably:**
 
-1) The exponential model produces consistently better (higher) estimated statistical power than the linear model, irrespective of $n$. This is because the linear model is mis-specified whilst the exponential model is a correct/ accurate representation of the effective of $n$ on estimated statistical power. This difference is clearest for small $n$.
+1)  The exponential model produces consistently better (higher) estimated statistical power than the linear model, irrespective of $n$. This is because the linear model is mis-specified whilst the exponential model is a correct/ accurate representation of the effective of $n$ on estimated statistical power. This difference is clearest for small $n$.
 
-2) There is a low estimated statistical power for small $n$. At $n$ = 5, the estimated power is very small at 17.4% for the linear model and moderate at 69.8% for the exponential model. This indicates a moderate to high risk of a Type 2 error when test for small $n$.
+2)  There is a low estimated statistical power for small $n$. At $n$ = 5, the estimated power is very small at 17.4% for the linear model and moderate at 69.8% for the exponential model. This indicates a moderate to high risk of a Type 2 error when test for small $n$.
 
-3) There is a high estimated statistical power at for large $n$. At $n$ = 20, the estimated power of the test is very high at 90.1% for the linear model and 99.5% for the exponential model, reaching 100% at $n$ = 50 for both models. This indicates an incredibly low risk of a Type 2 error when testing for large $n$.
+3)  There is a high estimated statistical power at for large $n$. At $n$ = 20, the estimated power of the test is very high at 90.1% for the linear model and 99.5% for the exponential model, reaching 100% at $n$ = 50 for both models. This indicates an incredibly low risk of a Type 2 error when testing for large $n$.
 
----
+------------------------------------------------------------------------
 
 ### Conclusion & design insight:
 
-
 **In Scenario A:**
 
-Estimated power increases as effect size increases for a fixed sample size, $n = 25$. This means there is a clear monotonic, increasing relationship between the effect size ($\beta1_{A}$) and estimated statistical power. From the results of scenario B, this sample size $n = 25$ is sufficiently large for us to ignore the effects of sample size on estimated power (At $n$ = 20: $(1-\beta)_{linear}$ = 90.1%, $(1-\beta)_{exponential}$ = 99.5% ). This implies that effect size is very influential on the power of a test. 
+Estimated power increases as effect size increases for a fixed sample size, $n = 25$. This means there is a clear monotonic, increasing relationship between the effect size ($\beta1_{A}$) and estimated statistical power. From the results of scenario B, this sample size $n = 25$ is sufficiently large for us to ignore the effects of sample size on estimated power (At $n$ = 20: $(1-\beta)_{linear}$ = 90.1%, $(1-\beta)_{exponential}$ = 99.5% ). This implies that effect size is very influential on the power of a test.
 
 **In Scenario B:**
 
 Estimated power increases as sample size increases in both linear an exponential models for a fixed effect size, $\beta_{1} = 0.01$. This means there is a clear monotonic increasing relationship between the sample size $n$ and the estimated statistical power, but since effect size is fixed we can't evaluate its influence in this scenario. Both the mis-specified linear model and exponential model follow a concave growth pattern reaching $(1-\beta) = 1$ however the exponential model consistently outperforms the linear model for all $n$.
 
-**Lowest power yield: **
+**Lowest power yield:**
 
 Scenario A yields the lowest overall power, specifically for small effect sizes ($\beta_{1}$ = 0.5 $\implies (1-\beta)$ = 4.5%).
 
@@ -947,5 +949,4 @@ This is because with a fixed moderate sample size $n$ = 25, very small effect si
 
 The simulations usefully demonstrate that estimated power increases with both effect size ($\beta_{1}$) and sample size ($n$). On top of this using the correctly specified model greatly improves the power of our tests. This shows that understanding the underlying relationship between our predictor and response variables is fundamental to upholding linear regression assumptions.
 
-
----
+------------------------------------------------------------------------

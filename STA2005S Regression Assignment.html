@@ -332,8 +332,8 @@ window.Quarto = {
 <h6 class="anchored" data-anchor-id="energy-efficiency-vs-solar-usage-table">Energy Efficiency vs Solar Usage Table:</h6>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-4f4f57f5b5c87455568d" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-4f4f57f5b5c87455568d">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Poor","Average","Good","Excellent"],"Yes":[12,31,24,9],"No":[16,28,22,8]},"columns":[{"id":".rownames","name":"Energy Efficiency","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"Yes","name":"Solar use","type":"numeric"},{"id":"No","name":"No Solar","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"f62a3d31c1458f5e45b4eaed5cb757f9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-b3148c0324a92f63faae" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b3148c0324a92f63faae">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Poor","Average","Good","Excellent"],"Yes":[12,31,24,9],"No":[16,28,22,8]},"columns":[{"id":".rownames","name":"Energy Efficiency","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"Yes","name":"Solar use","type":"numeric"},{"id":"No","name":"No Solar","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"f62a3d31c1458f5e45b4eaed5cb757f9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -342,8 +342,8 @@ window.Quarto = {
 <h6 class="anchored" data-anchor-id="weekdays-vs-holidays-table">Weekdays vs Holidays Table:</h6>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-e9682c9da46add1da760" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e9682c9da46add1da760">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"0":[31,18,17,19,18,13,28],"1":[5,0,1,0,0,0,0]},"columns":[{"id":".rownames","name":"Day of the Week","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"0","name":"No Holiday","type":"numeric"},{"id":"1","name":"Holiday","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"af7f7cd3ef2fe65896f85c7b9701ba78"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-eba695a539a074af6845" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-eba695a539a074af6845">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"0":[31,18,17,19,18,13,28],"1":[5,0,1,0,0,0,0]},"columns":[{"id":".rownames","name":"Day of the Week","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"0","name":"No Holiday","type":"numeric"},{"id":"1","name":"Holiday","type":"numeric"}],"sortable":false,"highlight":true,"bordered":true,"borderless":true,"theme":{"highlightColor":"#ff6fae","headerStyle":{"background":"#3a86ff","color":"white","fontSize":"14px","fontWeight":"bold","borderBottom":"2px solid #f3722c"}},"dataKey":"af7f7cd3ef2fe65896f85c7b9701ba78"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -540,7 +540,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>( <span class="st">"Pr(&gt;|t|)"</span>)], confint_fit)</span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(table_final) <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">"p-value"</span>, <span class="st">"CI:97.5%"</span>, <span class="st">"CI:2.5%"</span>)</span>
 <span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(table_final, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Regression Coefficients with 95% Confidence Intervals and p-values</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Regression Coefficients with 95% Confidence Intervals and p-values</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(table_final, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                              p-value  CI:97.5%  CI:2.5%
 (Intercept)                  2.66e-04   7.20636  23.3221
@@ -567,84 +572,87 @@ outside_temperature:humidity 4.44e-01  -0.00998   0.0044</code></pre>
 <section id="hypothesis-testing" class="level4">
 <h4 class="anchored" data-anchor-id="hypothesis-testing">Hypothesis Testing:</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test whether the following significantly affect consumption_kwh</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Outside Temperature</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>fit_no_temp <span class="ot">&lt;-</span> <span class="fu">lm</span>(consumption_kwh <span class="sc">~</span> </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                   humidity <span class="sc">+</span> </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                   wind_speed <span class="sc">+</span> </span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                   household_size <span class="sc">+</span> </span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                   appliance_index <span class="sc">+</span> </span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                   energy_efficiency <span class="sc">+</span> </span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                   solar_installed <span class="sc">+</span> </span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                   day_of_week <span class="sc">+</span> holiday,</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> data)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>anova_temp <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit_no_temp, fit)</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_temp)</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Humidity </span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>fit_no_humidity <span class="ot">&lt;-</span> <span class="fu">lm</span>(consumption_kwh <span class="sc">~</span> </span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>            outside_temperature <span class="sc">+</span> </span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>            wind_speed <span class="sc">+</span> </span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>            household_size <span class="sc">+</span> </span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>            appliance_index <span class="sc">+</span> </span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>            energy_efficiency <span class="sc">+</span> </span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>            solar_installed <span class="sc">+</span> </span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>            day_of_week <span class="sc">+</span> holiday,</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> data)</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>anova_humidity <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit_no_humidity, fit)</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_humidity)</span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Solar Installed</span></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>fit_no_solar <span class="ot">&lt;-</span> <span class="fu">lm</span>(consumption_kwh <span class="sc">~</span> </span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>            outside_temperature <span class="sc">+</span></span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>            energy_efficiency <span class="sc">+</span></span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>            humidity <span class="sc">+</span> </span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>            wind_speed <span class="sc">+</span> </span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>            household_size <span class="sc">+</span> </span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>            appliance_index <span class="sc">+</span></span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>            day_of_week <span class="sc">+</span> holiday,</span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> data)</span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>anova_solar <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit_no_solar, fit)</span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_solar)</span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="co"># day of the week</span></span>
-<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>fit_no_day <span class="ot">&lt;-</span> <span class="fu">lm</span>(consumption_kwh <span class="sc">~</span> </span>
-<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>            outside_temperature <span class="sc">+</span></span>
-<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>            energy_efficiency <span class="sc">+</span></span>
-<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>            solar_installed <span class="sc">+</span></span>
-<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>            humidity <span class="sc">+</span> </span>
-<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>            wind_speed <span class="sc">+</span> </span>
-<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>            household_size <span class="sc">+</span> </span>
-<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>            appliance_index <span class="sc">+</span></span>
-<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>            holiday,</span>
-<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> data)</span>
-<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>anova_day <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit_no_day, fit)</span>
-<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_day)</span>
-<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test whether the following significantly affect consumption_kwh</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Outside Temperature</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>fit_no_temp <span class="ot">&lt;-</span> <span class="fu">lm</span>(consumption_kwh <span class="sc">~</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                   humidity <span class="sc">+</span> </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                   wind_speed <span class="sc">+</span> </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                   household_size <span class="sc">+</span> </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                   appliance_index <span class="sc">+</span> </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                   energy_efficiency <span class="sc">+</span> </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>                   solar_installed <span class="sc">+</span> </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                   day_of_week <span class="sc">+</span> holiday,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> data)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>anova_temp <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit_no_temp, fit)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_temp)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Humidity </span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>fit_no_humidity <span class="ot">&lt;-</span> <span class="fu">lm</span>(consumption_kwh <span class="sc">~</span> </span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>            outside_temperature <span class="sc">+</span> </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>            wind_speed <span class="sc">+</span> </span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>            household_size <span class="sc">+</span> </span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>            appliance_index <span class="sc">+</span> </span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>            energy_efficiency <span class="sc">+</span> </span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>            solar_installed <span class="sc">+</span> </span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>            day_of_week <span class="sc">+</span> holiday,</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> data)</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>anova_humidity <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit_no_humidity, fit)</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_humidity)</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Solar Installed</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>fit_no_solar <span class="ot">&lt;-</span> <span class="fu">lm</span>(consumption_kwh <span class="sc">~</span> </span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>            outside_temperature <span class="sc">+</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>            energy_efficiency <span class="sc">+</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>            humidity <span class="sc">+</span> </span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>            wind_speed <span class="sc">+</span> </span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>            household_size <span class="sc">+</span> </span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>            appliance_index <span class="sc">+</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>            day_of_week <span class="sc">+</span> holiday,</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> data)</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>anova_solar <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit_no_solar, fit)</span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_solar)</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a><span class="co"># day of the week</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>fit_no_day <span class="ot">&lt;-</span> <span class="fu">lm</span>(consumption_kwh <span class="sc">~</span> </span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>            outside_temperature <span class="sc">+</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>            energy_efficiency <span class="sc">+</span></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>            solar_installed <span class="sc">+</span></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>            humidity <span class="sc">+</span> </span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>            wind_speed <span class="sc">+</span> </span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>            household_size <span class="sc">+</span> </span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>            appliance_index <span class="sc">+</span></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>            holiday,</span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> data)</span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>anova_day <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit_no_day, fit)</span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_day)</span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 <p>Hypothesis test: Effect of Outside Temperature<span class="math display">\[H_{0}: \beta_{temperature} = \beta_{temp:humidity} = 0\]</span></p>
-<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{temperature}, \beta_{temp:humidity}) \neq 0\]</span> <span class="math display">\[F_{stat} =  1.002 \]</span> <span class="math display">\[p_{value} =  0.3698  &gt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we fail to reject } H_{0}.\]</span><span class="math display">\[\text{Because there is no significant overall effect of outside temperature} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &gt; 0.05).\]</span> ———————————————————————————————————————— Hypothesis test: Effect of Humidity<span class="math display">\[H_{0}: \beta_{humidity} = \beta_{temp:humidity} = 0\]</span></p>
-<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{humidity}, \beta_{temp:humidity}) \neq 0\]</span> <span class="math display">\[F_{stat} =  2.218 \]</span> <span class="math display">\[p_{value} =  0.1129  &gt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we fail to reject } H_{0}.\]</span><span class="math display">\[\text{Because there is no significant overall effect of humidity} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &gt; 0.05).\]</span> ———————————————————————————————————————— Hypothesis test: Effect of Solar Usage<span class="math display">\[H_{0}: \beta_{solar} = \beta_{no solar} = 0\]</span></p>
-<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{solar}, \beta_{no solar}) \neq 0\]</span> <span class="math display">\[F_{stat} =  476.838 \]</span> <span class="math display">\[p_{value} =  3.996357e-61  &lt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we reject } H_{0} \text{ in favor of } H_{1}.\]</span><span class="math display">\[\text{Because there is a significant overall effect of solar usage} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &lt; 0.05).\]</span> ———————————————————————————————————————— Hypothesis test: Effect of Day of the Week<span class="math display">\[H_{0}: \beta_{Mon} = \beta_{Tue} = \beta_{Wed} = \beta_{Thu} = \beta_{Fri} = \beta_{Sat} = \beta_{Sun} = 0\]</span></p>
+<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{temperature}, \beta_{temp:humidity}) \neq 0\]</span> <span class="math display">\[F_{stat} =  1.002 \]</span> <span class="math display">\[p_{value} =  0.3698  &gt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we fail to reject } H_{0}.\]</span><span class="math display">\[\text{Because there is no significant overall effect of outside temperature} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &gt; 0.05).\]</span> ————————————————————————————————————————</p>
+<p>Hypothesis test: Effect of Humidity<span class="math display">\[H_{0}: \beta_{humidity} = \beta_{temp:humidity} = 0\]</span></p>
+<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{humidity}, \beta_{temp:humidity}) \neq 0\]</span> <span class="math display">\[F_{stat} =  2.218 \]</span> <span class="math display">\[p_{value} =  0.1129  &gt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we fail to reject } H_{0}.\]</span><span class="math display">\[\text{Because there is no significant overall effect of humidity} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &gt; 0.05).\]</span> ————————————————————————————————————————</p>
+<p>Hypothesis test: Effect of Solar Usage<span class="math display">\[H_{0}: \beta_{solar} = \beta_{no solar} = 0\]</span></p>
+<p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{solar}, \beta_{no solar}) \neq 0\]</span> <span class="math display">\[F_{stat} =  476.838 \]</span> <span class="math display">\[p_{value} =  3.996357e-61  &lt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we reject } H_{0} \text{ in favor of } H_{1}.\]</span><span class="math display">\[\text{Because there is a significant overall effect of solar usage} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &lt; 0.05).\]</span> ————————————————————————————————————————</p>
+<p>Hypothesis test: Effect of Day of the Week<span class="math display">\[H_{0}: \beta_{Mon} = \beta_{Tue} = \beta_{Wed} = \beta_{Thu} = \beta_{Fri} = \beta_{Sat} = \beta_{Sun} = 0\]</span></p>
 <p><span class="math display">\[H_{1}: \text{At least one of } (\beta_{Mon}, \beta_{Tue}, \beta_{Wed}, \beta_{Thu}, \beta_{Fri}, \beta_{Sat}, \beta_{Sun}) \neq 0\]</span> <span class="math display">\[F_{stat} =  1.798 \]</span> <span class="math display">\[p_{value} =  0.09282003  &gt; 0.05 \]</span> <span class="math display">\[\text{At the } \alpha = 0.05 \text{ significance level, we fail to reject } H_{0}.\]</span><span class="math display">\[\text{Because there is no significant overall effect of the day of the week} \]</span><span class="math display">\[\text{on energy consumption } (p_{value} &gt; 0.05).\]</span></p>
 <hr>
 </section>
 <section id="interpretation" class="level4">
 <h4 class="anchored" data-anchor-id="interpretation">Interpretation:</h4>
 <p>At the <span class="math inline">\(\alpha = 0.05\)</span> significance level:</p>
-<p><strong>confidence intervals &amp; Effect Sizes: </strong></p>
+<p><strong>confidence intervals &amp; Effect Sizes:</strong></p>
 <p>Predictor variables associated with effect estimates, <span class="math inline">\(\hat{\beta_{i}}\)</span>, whose confidence intervals contain 0 are considered statistically insignificant, and do not heavily influence household electricity consumption. These factors include (outside_temperature, humidity, wind_speed, appliance_index, energy_efficiency (all levels), days of the week (other than Monday and Saturday), and holidays )</p>
 <p>None of the CI’s associated with the following factors include 0:</p>
 <ol type="1">
@@ -653,7 +661,7 @@ outside_temperature:humidity 4.44e-01  -0.00998   0.0044</code></pre>
 <li>Monday: [0.54, 3.68] <span class="math inline">\(\implies\)</span> Mondays have a statistically significant influence on electricity consumption. This positive effect however is fairly weak, but less week than household size, since it can maximally show a 3.68 units increase in consumption (kWh) per level change to Monday.</li>
 <li>Saturday: [0.02, 3.95] <span class="math inline">\(\implies\)</span> Saturdays have a statistically significant influence on electricity consumption.This positive effect however is fairly weak, but less week than household size, since it can maximally show a 3.95 units increase in consumption (kWh) per level change to Saturday.</li>
 </ol>
-<p><strong>P-value: </strong></p>
+<p><strong>P-value:</strong></p>
 <p>All the factors that our confidence intervals found to be statistically insignificant are reinforced as statistically insignificant by their p-values as: <span class="math inline">\(p_{i} &gt; 0.05\)</span>, <span class="math inline">\(\forall i \in\)</span> (outside_temperature, humidity, wind_speed, appliance_index, energy_efficiency (all levels), days of the week (other than Monday and Saturday), and holidays)</p>
 <ol type="1">
 <li>household size: <span class="math inline">\(p \approx 0 &lt; 0.05 \implies\)</span> household size has a statistically significant influence on electricity consumption</li>
@@ -661,7 +669,7 @@ outside_temperature:humidity 4.44e-01  -0.00998   0.0044</code></pre>
 <li>Monday: <span class="math inline">\(p \approx 0.009 &lt; 0.05 \implies\)</span> Mondays have a statistically significant influence on electricity consumption. This is likely due to the fact that so many holidays fell on a Monday, despite holiday status being statistically insignificant otherwise.</li>
 <li>Saturday: <span class="math inline">\(p \approx 0.047 &lt; 0.05 \implies\)</span> Saturdays have a statistically significant influence on electricity consumption</li>
 </ol>
-<p><strong>NB: </strong> Our overall test for the effect of day_of_week concluded that they day of the week was statistically insignificant so the outlying effects of Monday and Saturday should be interpreted with caution.</p>
+<p><strong>NB:</strong> Our overall test for the effect of day_of_week concluded that they day of the week was statistically insignificant so the outlying effects of Monday and Saturday should be interpreted with caution.</p>
 </section>
 </section>
 <section id="section-5-conclusion" class="level3">
@@ -676,8 +684,8 @@ outside_temperature:humidity 4.44e-01  -0.00998   0.0044</code></pre>
 <section id="recommendations" class="level4">
 <h4 class="anchored" data-anchor-id="recommendations">Recommendations:</h4>
 <p>For demand-side management and efficiency policy we recommend:</p>
-<p><strong>1) Prioritizing solar installation: </strong> Solar installation and usage is by far the most deterministic predictor of electricity consumption and prioritizing it’s widespread use is vital to lowering the average household electrical consumption and expenditure in Cape Town. This could include investing into reusable energy research and development or enforcing solar usage mandates particularly for larger households which can afford to do so. Incentives such as lower rates or benefits could also be offered to promote the use of solar power and solar installation.</p>
-<p><strong>2) Rehashing the energy efficiency rating system: </strong> Unexpectedly, the energy efficiency rating of a household had no statistically significant effect on the household’s actual electricity consumption. This suggests that the current efficiency rating systems do not correlate to real-world usage patterns and should be revisited and updated to better reflect consumption.</p>
+<p><strong>1) Prioritizing solar installation:</strong> Solar installation and usage is by far the most deterministic predictor of electricity consumption and prioritizing it’s widespread use is vital to lowering the average household electrical consumption and expenditure in Cape Town. This could include investing into reusable energy research and development or enforcing solar usage mandates particularly for larger households which can afford to do so. Incentives such as lower rates or benefits could also be offered to promote the use of solar power and solar installation.</p>
+<p><strong>2) Rehashing the energy efficiency rating system:</strong> Unexpectedly, the energy efficiency rating of a household had no statistically significant effect on the household’s actual electricity consumption. This suggests that the current efficiency rating systems do not correlate to real-world usage patterns and should be revisited and updated to better reflect consumption.</p>
 </section>
 <section id="future-research" class="level4">
 <h4 class="anchored" data-anchor-id="future-research">Future Research:</h4>
@@ -692,34 +700,35 @@ outside_temperature:humidity 4.44e-01  -0.00998   0.0044</code></pre>
 <section id="scenario-a-baseline-normal-errors" class="level3">
 <h3 class="anchored" data-anchor-id="scenario-a-baseline-normal-errors">Scenario A: Baseline Normal Errors</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">25</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>x_vec_A <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">25</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>B1_sim_A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>results_A <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">B1_A =</span> B1_sim_A, </span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">power =</span> <span class="fu">numeric</span>(<span class="fu">length</span>(B1_sim_A))</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>              )</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( i <span class="cf">in</span> <span class="fu">seq_along</span>(B1_sim_A)){</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>      B1_A <span class="ot">&lt;-</span> B1_sim_A[i]</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      rejections_A <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (sim <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_sim){</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        E_A <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(x_vec_A), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> sd_sim)</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>        Y_A <span class="ot">&lt;-</span> B0_sim <span class="sc">+</span> B1_A <span class="sc">*</span> x_vec_A <span class="sc">+</span> E_A</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>        fit_A <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_A <span class="sc">~</span> x_vec_A)</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>        p_val_A <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_A)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">4</span>]</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (p_val_A <span class="sc">&lt;</span> <span class="fl">0.05</span>){ rejections_A <span class="ot">=</span> rejections_A <span class="sc">+</span><span class="dv">1</span> }</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>      results_A<span class="sc">$</span>power[i] <span class="ot">&lt;-</span> rejections_A<span class="sc">/</span>n_sim</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>      } </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">25</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x_vec_A <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">25</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>B1_sim_A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>results_A <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">B1_A =</span> B1_sim_A, </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">power =</span> <span class="fu">numeric</span>(<span class="fu">length</span>(B1_sim_A))</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( i <span class="cf">in</span> <span class="fu">seq_along</span>(B1_sim_A)){</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>      B1_A <span class="ot">&lt;-</span> B1_sim_A[i]</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>      rejections_A <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (sim <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_sim){</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>        E_A <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(x_vec_A), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> sd_sim)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>        Y_A <span class="ot">&lt;-</span> B0_sim <span class="sc">+</span> B1_A <span class="sc">*</span> x_vec_A <span class="sc">+</span> E_A</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        fit_A <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_A <span class="sc">~</span> x_vec_A)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        p_val_A <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_A)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">4</span>]</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (p_val_A <span class="sc">&lt;</span> <span class="fl">0.05</span>){ rejections_A <span class="ot">=</span> rejections_A <span class="sc">+</span><span class="dv">1</span> }</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>      results_A<span class="sc">$</span>power[i] <span class="ot">&lt;-</span> rejections_A<span class="sc">/</span>n_sim</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>      } </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Tabulated Results of Estimated power across Effect sizes</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -765,46 +774,50 @@ outside_temperature:humidity 4.44e-01  -0.00998   0.0044</code></pre>
 <section id="scenario-b-non-linear-truthexponential-relationship" class="level3">
 <h3 class="anchored" data-anchor-id="scenario-b-non-linear-truthexponential-relationship">Scenario B: Non-linear Truth/Exponential Relationship</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sample_sizes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">50</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>B1_B <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>results_B <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">n_B =</span> <span class="fu">rep</span>(sample_sizes, <span class="at">each =</span> <span class="dv">2</span>),</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">model =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Linear"</span>, <span class="st">"Exponential"</span>), <span class="at">times =</span> <span class="fu">length</span>(sample_sizes)),</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">power =</span> <span class="fu">numeric</span>(<span class="fu">length</span>(sample_sizes)<span class="sc">*</span><span class="dv">2</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>              )</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">25</span>)</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>row_index <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (size <span class="cf">in</span> <span class="fu">seq_along</span>(sample_sizes)){</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    n_current <span class="ot">=</span> sample_sizes[size]</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    x_vec_B <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">7</span>, <span class="at">length.out =</span> n_current)</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    rejections_linear <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    rejections_exp <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (sim <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span> n_sim){</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>        E_B <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_current, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> sd_sim)</span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>        Y_B <span class="ot">&lt;-</span> B0_sim <span class="sc">+</span> B1_B <span class="sc">*</span> <span class="fu">exp</span>(x_vec_B) <span class="sc">+</span> E_B</span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>        fit_linear <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_B <span class="sc">~</span> x_vec_B)</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>        p_val_linear <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_linear)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">4</span>]</span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>        fit_exp <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_B <span class="sc">~</span> <span class="fu">exp</span>(x_vec_B))</span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>        p_val_exp <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_exp)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">4</span>]</span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (p_val_linear <span class="sc">&lt;</span> <span class="fl">0.05</span>){ rejections_linear <span class="ot">=</span> rejections_linear <span class="sc">+</span><span class="dv">1</span> }</span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (p_val_exp <span class="sc">&lt;</span> <span class="fl">0.05</span>){ rejections_exp <span class="ot">=</span> rejections_exp <span class="sc">+</span><span class="dv">1</span> }</span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    results_B<span class="sc">$</span>power[row_index] <span class="ot">&lt;-</span> rejections_linear<span class="sc">/</span>n_sim</span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    results_B<span class="sc">$</span>power[row_index<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> rejections_exp<span class="sc">/</span>n_sim</span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>    row_index <span class="ot">=</span> row_index <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sample_sizes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">50</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>B1_B <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>results_B <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">n_B =</span> <span class="fu">rep</span>(sample_sizes, <span class="at">each =</span> <span class="dv">2</span>),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">model =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Linear"</span>, <span class="st">"Exponential"</span>), <span class="at">times =</span> <span class="fu">length</span>(sample_sizes)),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">power =</span> <span class="fu">numeric</span>(<span class="fu">length</span>(sample_sizes)<span class="sc">*</span><span class="dv">2</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">25</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>row_index <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (size <span class="cf">in</span> <span class="fu">seq_along</span>(sample_sizes)){</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    n_current <span class="ot">=</span> sample_sizes[size]</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    x_vec_B <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">7</span>, <span class="at">length.out =</span> n_current)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    rejections_linear <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    rejections_exp <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (sim <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span> n_sim){</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>        E_B <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_current, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> sd_sim)</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>        Y_B <span class="ot">&lt;-</span> B0_sim <span class="sc">+</span> B1_B <span class="sc">*</span> <span class="fu">exp</span>(x_vec_B) <span class="sc">+</span> E_B</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>        fit_linear <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_B <span class="sc">~</span> x_vec_B)</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>        p_val_linear <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_linear)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">4</span>]</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>        fit_exp <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_B <span class="sc">~</span> <span class="fu">exp</span>(x_vec_B))</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>        p_val_exp <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_exp)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">4</span>]</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (p_val_linear <span class="sc">&lt;</span> <span class="fl">0.05</span>){ rejections_linear <span class="ot">=</span> rejections_linear <span class="sc">+</span><span class="dv">1</span> }</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (p_val_exp <span class="sc">&lt;</span> <span class="fl">0.05</span>){ rejections_exp <span class="ot">=</span> rejections_exp <span class="sc">+</span><span class="dv">1</span> }</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>    results_B<span class="sc">$</span>power[row_index] <span class="ot">&lt;-</span> rejections_linear<span class="sc">/</span>n_sim</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>    results_B<span class="sc">$</span>power[row_index<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> rejections_exp<span class="sc">/</span>n_sim</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>    row_index <span class="ot">=</span> row_index <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Tabulated Results of Estimated power across Sample size </code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  n_B       model power
 1   5      Linear 0.174
@@ -849,7 +862,7 @@ outside_temperature:humidity 4.44e-01  -0.00998   0.0044</code></pre>
 <p>Estimated power increases as effect size increases for a fixed sample size, <span class="math inline">\(n = 25\)</span>. This means there is a clear monotonic, increasing relationship between the effect size (<span class="math inline">\(\beta1_{A}\)</span>) and estimated statistical power. From the results of scenario B, this sample size <span class="math inline">\(n = 25\)</span> is sufficiently large for us to ignore the effects of sample size on estimated power (At <span class="math inline">\(n\)</span> = 20: <span class="math inline">\((1-\beta)_{linear}\)</span> = 90.1%, <span class="math inline">\((1-\beta)_{exponential}\)</span> = 99.5% ). This implies that effect size is very influential on the power of a test.</p>
 <p><strong>In Scenario B:</strong></p>
 <p>Estimated power increases as sample size increases in both linear an exponential models for a fixed effect size, <span class="math inline">\(\beta_{1} = 0.01\)</span>. This means there is a clear monotonic increasing relationship between the sample size <span class="math inline">\(n\)</span> and the estimated statistical power, but since effect size is fixed we can’t evaluate its influence in this scenario. Both the mis-specified linear model and exponential model follow a concave growth pattern reaching <span class="math inline">\((1-\beta) = 1\)</span> however the exponential model consistently outperforms the linear model for all <span class="math inline">\(n\)</span>.</p>
-<p><strong>Lowest power yield: </strong></p>
+<p><strong>Lowest power yield:</strong></p>
 <p>Scenario A yields the lowest overall power, specifically for small effect sizes (<span class="math inline">\(\beta_{1}\)</span> = 0.5 <span class="math inline">\(\implies (1-\beta)\)</span> = 4.5%).</p>
 <p>This is because with a fixed moderate sample size <span class="math inline">\(n\)</span> = 25, very small effect sizes are difficult to detect resulting in a low estimated power and high risk of Type 2 errors in testing.In contrast, Scenario B can achieve higher power by increasing <span class="math inline">\(n\)</span>, even for small effect sizes on top of considering the differences between the linear and exponential models (At <span class="math inline">\(n\)</span> = 5 and <span class="math inline">\(\beta_{1} = 0.01\)</span> : <span class="math inline">\((1-\beta)_{linear}\)</span> = 17.4%, <span class="math inline">\((1-\beta)_{exponential}\)</span> = 69.8% .</p>
 <p><strong>Design decisions:</strong></p>
