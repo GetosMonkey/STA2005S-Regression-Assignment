@@ -1,7 +1,12 @@
 ---
 title: "Stats Assignment 1"
 author: "Group 48 - ABRMAR043"
-format: html
+format:
+  html:
+    toc: true
+    toc-location: right
+    number-sections: true
+    self-contained: true
 editor: visual
 ---
 
